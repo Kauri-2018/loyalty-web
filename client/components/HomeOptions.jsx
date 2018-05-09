@@ -8,7 +8,10 @@ class HomeOptions extends React.Component {
   render () {
     return (
       <div className='homeoptions'>
-        <h1>HomeOptions</h1>
+        <h3>homeoptions container</h3>
+        <button>Admin Login</button>
+        <button>Register as admin</button>
+        <button>Register as loyalty member</button>
       </div>
     )
   }
