@@ -1,7 +1,7 @@
 import React from 'react'
 // import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
-// import Home from './Home'
+import Home from './Home'
 // import Register from './Register'
 // import Login from './Login'
 // import Profile from './Profile'
@@ -11,7 +11,7 @@ import React from 'react'
 const App = () => {
   return (
     <div className='app'>
-      <h1>App</h1>
+      <Home />
     </div>
     // <Router>
     //   <div className='app container'>
