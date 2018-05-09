@@ -2,7 +2,7 @@ import React from 'react'
 // import {connect} from 'react-redux'
 // import {login} from '../actions/login'
 
-class Login extends React.Component {
+class AdminLogin extends React.Component {
   // constructor (props) {
   //   super(props)
   //   this.state = {
@@ -28,8 +28,8 @@ class Login extends React.Component {
 
   render () {
     return (
-      <div className ='login'>
-        <h2>Login</h2>
+      <div className ='AdminLogin'>
+        <h2>AdminLogin</h2>
         {/* <div><input type='text' name='username' placeholder='Username' onChange={this.handleChange}/></div>
         <div><input type='password' placeholder='Password' name='password' onChange={this.handleChange}/></div>
         <button onClick={this.attemptUserLogin}>Log in</button> */}
@@ -47,4 +47,4 @@ class Login extends React.Component {
 // }
 
 // export default connect(null, mapDispatchToProps)(Login)
-export default Login
+export default AdminLogin
