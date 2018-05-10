@@ -11,9 +11,9 @@ class HomeOptions extends React.Component {
     return (
       <div className='homeoptions'>
         <h3>homeoptions container</h3>
-        <button>Admin Login</button>
-        <button>Register as admin</button>
-        <button>Register as loyalty member</button>
+        <Link to="/login"><button>Admin Login</button></Link>
+        <Link to="/adminregister"><button>Register as admin</button></Link>
+        <Link to="/userRegister"><button>Register as loyalty member</button></Link>
       </div>
     )
   }

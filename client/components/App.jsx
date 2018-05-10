@@ -1,37 +1,34 @@
 import React from 'react'
-// import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 
 import Home from './Home'
-// import Register from './Register'
-// import Login from './Login'
+import AdminRegister from './AdminRegister'
+import UserRegister from './UserRegister'
+import Login from './AdminLogin'
 // import Profile from './Profile'
 // import NavBar from './NavBar'
 // import Barista from './Barista'
 
 const App = () => {
   return (
-    <div className='app'>
-      <Home />
-    </div>
-    // <Router>
-    //   <div className='app container'>
-    //     <Switch>
-    //       <Route path='/barista' component={Barista} />
-    //       <Route path='/' component={AppPaths} />
-    //     </Switch>
-    //   </div>
-    // </Router>
+    <Router className='app'>
+      <div className='app container'>
+        <Switch>
+          {/* <Route path='/barista' component={Barista} /> */}
+          <Route path='/' component={AppPaths} />
+        </Switch>
+      </div>
+    </Router>
   )
 }
 
-// const AppPaths = () => (
-//   <div>
-//     <Route path='/' component={NavBar} />
-//     <Route exact path='/' component={Home} />
-//     <Route path='/register' component={Register} />
-//     <Route path='/login' component={Login} />
-//     <Route path='/profile' component={Profile} />
-//   </div>
-// )
+const AppPaths = () => (
+  <div>
+    <Route exact path='/' component={Home} />
+    <Route path='/adminregister' component={AdminRegister} />
+    <Route path='/userRegister' component={UserRegister} />
+    <Route path='/login' component={Login} />
+  </div>
+)
 
 export default App
