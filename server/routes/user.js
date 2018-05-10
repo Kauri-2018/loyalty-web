@@ -24,7 +24,7 @@ router.get('/profile', token.decode, (req, res) => {
 })
 
 function login (req, res, next) {
-  db.getCredsByName(req.body.username)
+  db.getUserByName(req.body.username)
     .then(user => {
       return user && hash.verifyUser(user.hash, req.body.password)
     })

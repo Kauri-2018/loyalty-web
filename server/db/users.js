@@ -3,15 +3,15 @@ const config = require('./knexfile')[environment]
 const connection = require('knex')(config)
 const {generate} = require('../auth/hash')
 
-function getCredsByName (username, db = connection) {
-  return db('creds')
+function getUserByName (username, db = connection) {
+  return db('users')
     .select()
     .whereRaw('LOWER(username) LIKE ?', username.toLowerCase())
     .first()
 }
 
 function userExists (username, db = connection) {
-  return db('creds')
+  return db('users')
     .whereRaw('LOWER(username) LIKE ?', username.toLowerCase())
     .first()
     .then(user => !!user)
@@ -19,17 +19,18 @@ function userExists (username, db = connection) {
 
 function createUser (username, name, password, db = connection) {
   const hash = generate(password)
-  return db('creds')
+  return db('users')
     .insert({
       username,
-      hash
+      hash,
+      role: 'member'
     })
     .then((id) => {
-      return db('users')
+      return db('profiles')
         .insert({
-          cred_id: id[0],
+          user_id: id[0],
           name,
-          order_text: ''
+          membership_type: 'member'
         })
     })
 }
@@ -69,7 +70,7 @@ function updateUser (user, conn = connection) {
 }
 
 module.exports = {
-  getCredsByName,
+  getUserByName,
   getUserByCredId,
   userExists,
   createUser,

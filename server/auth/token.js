@@ -8,7 +8,7 @@ module.exports = {
 }
 
 function issue (req, res) {
-  db.getCredsByName(req.body.username)
+  db.getUserByName(req.body.username)
     .then(user => {
       const token = createToken(user, process.env.JWT_SECRET)
       res.json({
@@ -21,7 +21,8 @@ function issue (req, res) {
 function createToken (user, secret) {
   return jwt.sign({
     id: user.id,
-    username: user.username
+    username: user.username,
+    role: user.role
   }, secret, {
     expiresIn: '1d'
   })
