@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
 import Home from './Home'
 import AdminRegister from './AdminRegister'
 import UserRegister from './UserRegister'
-import Login from './AdminLogin'
+import AdminLogin from './AdminLogin'
 // import Profile from './Profile'
 // import NavBar from './NavBar'
 // import Barista from './Barista'
@@ -26,8 +26,8 @@ const AppPaths = () => (
   <div>
     <Route exact path='/' component={Home} />
     <Route path='/adminregister' component={AdminRegister} />
-    <Route path='/userRegister' component={UserRegister} />
-    <Route path='/login' component={Login} />
+    <Route path='/userregister' component={UserRegister} />
+    <Route path='/adminlogin' component={AdminLogin} />
   </div>
 )
 
