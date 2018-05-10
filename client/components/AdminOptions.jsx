@@ -11,8 +11,8 @@ class AdminOptions extends React.Component {
     return (
       <div className='adminoptions'>
         <h3>Adminoptions container</h3>
-        <Link to="/statistics"><button>Statistics</button></Link>
-        <Link to="/new"><button>Add new users</button></Link>
+        <Link to="/profile/statistics"><button>Statistics</button></Link>
+        <Link to="/profile/new"><button>Add new users</button></Link>
       </div>
     )
   }

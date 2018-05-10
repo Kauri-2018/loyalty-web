@@ -7,6 +7,8 @@ import AdminRegister from './AdminRegister'
 import UserRegister from './UserRegister'
 import AdminLogin from './AdminLogin'
 import AdminOptions from './AdminOptions'
+import Statistics from './Statistics'
+import AddNewUser from './AddNewUser'
 // import Profile from './Profile'
 // import NavBar from './NavBar'
 // import Barista from './Barista'
@@ -37,9 +39,9 @@ const HomePath = () => (
 
 const ProfilePath = () => (
   <div>
-    <Route exact path='/' component={AdminOptions} />
-    <Route path='/statistics' component={Statistics} />
-    <Route path='/new' component={AddNewUser} />
+    <Route exact path='/profile' component={AdminOptions} />
+    <Route path='/profile/statistics' component={Statistics} />
+    <Route path='/profile/new' component={AddNewUser} />
   </div>
 )
 export default App
