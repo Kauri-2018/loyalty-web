@@ -1,4 +1,4 @@
-import {loginUser, getUser} from '../apiClient'
+import {loginAdmin, getUser} from '../apiClient'
 import {set} from '../utils/localStorage'
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -6,9 +6,7 @@ export const LOGIN_FAILURE = 'LOGIN_FAILURE'
 
 function requestLogin () {
   return {
-    type: LOGIN_REQUEST,
-    isFetching: true,
-    isAuthenticated: false
+    type: LOGIN_REQUEST
   }
 }
 
@@ -26,12 +24,12 @@ function loginError (message) {
   }
 }
 
-export function login (userDetails) {
+export function administratorLogin (userDetails) {
   return dispatch => {
     dispatch(requestLogin())
-    return loginUser(userDetails)
+    return loginAdmin(userDetails)
       .then(res => {
-        if (!res.ok) {
+        if (res.status !== 200) {
           dispatch(loginError(res.body.message))
           return Promise.reject(res.body.message)
         } else {
@@ -41,6 +39,12 @@ export function login (userDetails) {
               dispatch(receiveLogin(user))
             })
         }
+      })
+      .catch((err) => {
+        // err.response.body.errorType: "NO_Authority"
+        // err.message: "Bad Request"
+        dispatch(loginError(err.response.body.errorType))
+        return Promise.reject(err.response.body.errorType)
       })
   }
 }

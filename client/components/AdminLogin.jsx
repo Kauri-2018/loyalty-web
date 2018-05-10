@@ -1,6 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
-import {login} from '../actions/login'
+import {administratorLogin} from '../actions/login'
+import ErrorMessage from './ErrorMessage'
 
 class AdminLogin extends React.Component {
   constructor (props) {
@@ -30,8 +31,9 @@ class AdminLogin extends React.Component {
     return (
       <div className ='AdminLogin'>
         <h2>AdminLogin</h2>
+        <ErrorMessage />
         <div><input type='text' name='username' placeholder='Username' onChange={this.handleChange}/></div>
-        <div><input type='password' placeholder='Password' name='password' onChange={this.handleChange}/></div>
+        <div><input type='password' name='password' placeholder='Password' onChange={this.handleChange}/></div>
         <button onClick={this.attemptUserLogin}>Log in</button>
       </div>
     )
@@ -41,7 +43,7 @@ class AdminLogin extends React.Component {
 const mapDispatchToProps = dispatch => {
   return {
     loginUser: loginData => {
-      return dispatch(login(loginData))
+      return dispatch(administratorLogin(loginData))
     }
   }
 }
