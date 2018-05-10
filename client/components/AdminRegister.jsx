@@ -5,22 +5,22 @@ import React from 'react'
 // import {registerUser, getUser} from '../apiClient'
 
 class AdmimRegister extends React.Component {
-  // constructor (props) {
-  //   super(props)
-  //   this.state = {
-  //     username: '',
-  //     password: '',
-  //     name: ''
-  //   }
-  //   this.handleChange = this.handleChange.bind(this)
-  //   this.submitNewUser = this.submitNewUser.bind(this)
-  // }
+  constructor (props) {
+    super(props)
+    this.state = {
+      username: '',
+      password: '',
+      name: ''
+    }
+    this.handleChange = this.handleChange.bind(this)
+    // this.submitNewUser = this.submitNewUser.bind(this)
+  }
 
-  // handleChange (e) {
-  //   this.setState({
-  //     [e.target.name]: e.target.value
-  //   })
-  // }
+  handleChange (e) {
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
 
   // submitNewUser () {
   //   if (this.state.username && this.state.password && this.state.name) {
@@ -39,10 +39,10 @@ class AdmimRegister extends React.Component {
     return (
       <div className ='AdmimRegister'>
         <h2>AdmimRegister</h2>
-        {/* <div><input type='text' name='name' placeholder='First Name' onChange={this.handleChange}/></div>
+        <div><input type='text' name='name' placeholder='First Name' onChange={this.handleChange}/></div>
         <div><input type='text' name='username' placeholder='Username' onChange={this.handleChange}/></div>
         <div><input type='password' placeholder='Password' name='password' onChange={this.handleChange}/></div>
-        <button onClick={this.submitNewUser}>Register</button> */}
+        <button onClick={this.submitNewUser}>Register</button>
       </div>
     )
   }
