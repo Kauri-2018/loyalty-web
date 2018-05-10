@@ -1,8 +1,8 @@
 import React from 'react'
-// import {connect} from 'react-redux'
+import {connect} from 'react-redux'
 
-// import {receiveLogin} from '../actions/login'
-// import {registerUser, getUser} from '../apiClient'
+import {receiveLogin} from '../actions/login'
+import {registerUser, getUser} from '../apiClient'
 
 class AdmimRegister extends React.Component {
   constructor (props) {
@@ -13,7 +13,7 @@ class AdmimRegister extends React.Component {
       name: ''
     }
     this.handleChange = this.handleChange.bind(this)
-    // this.submitNewUser = this.submitNewUser.bind(this)
+    this.submitNewUser = this.submitNewUser.bind(this)
   }
 
   handleChange (e) {
@@ -22,18 +22,18 @@ class AdmimRegister extends React.Component {
     })
   }
 
-  // submitNewUser () {
-  //   if (this.state.username && this.state.password && this.state.name) {
-  //     registerUser({...this.state})
-  //       .then(token => {
-  //         // TODO Move to separate module at later stage
-  //         localStorage.setItem('token', token)
-  //       })
-  //       .then(getUser)
-  //       .then(user => this.props.loginUser(user))
-  //       .then(() => this.props.history.push('/profile'))
-  //   }
-  // }
+  submitNewUser () {
+    if (this.state.username && this.state.password && this.state.name) {
+      registerUser({...this.state})
+        .then(token => {
+          // TODO Move to separate module at later stage
+          localStorage.setItem('token', token)
+        })
+        .then(getUser)
+        .then(user => this.props.loginUser(user))
+        .then(() => this.props.history.push('/profile'))
+    }
+  }
 
   render () {
     return (
@@ -48,13 +48,12 @@ class AdmimRegister extends React.Component {
   }
 }
 
-// const mapDispatchToProps = dispatch => {
-//   return {
-//     loginUser: user => {
-//       return dispatch(receiveLogin(user))
-//     }
-//   }
-// }
+const mapDispatchToProps = dispatch => {
+  return {
+    loginUser: user => {
+      return dispatch(receiveLogin(user))
+    }
+  }
+}
 
-// export default connect(null, mapDispatchToProps)(Register)
-export default AdmimRegister
+export default connect(null, mapDispatchToProps)(AdmimRegister)
