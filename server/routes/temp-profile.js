@@ -16,7 +16,6 @@ router.get('/', token.decode, (req, res) => {
   //   .catch(err => {
   //     res.status(500).send(err.message)
   //   })
-  res.send('profiles route test')
 })
 
 router.put('/', token.decode, (req, res) => {
