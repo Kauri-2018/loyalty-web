@@ -47,15 +47,10 @@ function getUser (userId, conn = connection) {
     .first()
 }
 
-function getUserByCredId (credsId, conn = connection) {
-  return conn('users')
-    .where('cred_id', '=', credsId)
-    .select(
-      'id as userId',
-      'cred_id as credId',
-      'name',
-      'order_text as orderText'
-    )
+function getUserByUserId (userId, conn = connection) {
+  return conn('profiles')
+    .where('user_id', '=', userId)
+    .select()
     .first()
 }
 function updateUser (user, conn = connection) {
@@ -71,7 +66,7 @@ function updateUser (user, conn = connection) {
 
 module.exports = {
   getUserByName,
-  getUserByCredId,
+  getUserByUserId,
   userExists,
   createUser,
   getUser,

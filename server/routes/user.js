@@ -15,12 +15,12 @@ router.post('/register', register, token.issue)
 router.post('/login', login, token.issue)
 
 router.get('/profile', token.decode, (req, res) => {
-  // token.decode -- now req.user will contain the contents of our token
-  // db.getUserByCredId(req.user.id)
-  //   .then(credsId => res.json(credsId))
-  //   .catch(err => {
-  //     res.status(500).send(err.message)
-  //   })
+  db.getUserByUserId(req.user.id)
+    .then(
+      user => res.json(user))
+    .catch(err => {
+      res.status(500).send(err.message)
+    })
 })
 
 function login (req, res, next) {
@@ -40,7 +40,7 @@ function login (req, res, next) {
     })
     .catch((err) => {
       res.status(400).json({
-        error: err.message
+        errorType: err.message
       })
     })
 }

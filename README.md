@@ -1,6 +1,6 @@
 # Loyalty-web
 
-# Pages
+## Pages
   * Home(/)
   * Adminlogin(/adminlogin)
   * Adminregister(/adminregister)
