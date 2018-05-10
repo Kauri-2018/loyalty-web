@@ -14,13 +14,17 @@ router.post('/register', register, token.issue)
 router.post('/login', login, token.issue)
 
 router.get('/stats', token.decode, (req, res) => {
-  // db.getUsers()
-  //   .then(users => {
-  //     res.json(users)
-  //   })
-  //   .catch(err => {
-  //     res.status(500).send(err.message)
-  //   })
+  if (req.user.role === 'admin') {
+    db.getVisits()
+      .then(users => {
+        res.json(users)
+      })
+      .catch(err => {
+        res.status(500).send(err.message)
+      })
+  } else {
+    noAuthority(res)
+  }
 })
 
 router.get('/profile', token.decode, (req, res) => {
@@ -68,5 +72,11 @@ function register (req, res, next) {
 function invalidCredentials (res) {
   res.status(400).json({
     errorType: 'INVALID_CREDENTIALS'
+  })
+}
+
+function noAuthority (res) {
+  res.status(400).json({
+    errorType: 'NO_Authority'
   })
 }
