@@ -8,7 +8,7 @@ module.exports = {
 }
 
 function issue (req, res) {
-  db.getCredsByName(req.body.username)
+  db.getUserByName(req.body.username)
     .then(user => {
       const token = createToken(user, process.env.JWT_SECRET)
       res.json({
