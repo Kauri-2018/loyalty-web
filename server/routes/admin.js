@@ -1,7 +1,7 @@
 const express = require('express')
 
 const token = require('../auth/token')
-const db = require('../db/users')
+const db = require('../db/admin')
 const hash = require('../auth/hash')
 const router = express.Router()
 
@@ -33,7 +33,7 @@ router.get('/profile', token.decode, (req, res) => {
 })
 
 function login (req, res, next) {
-  db.getCredsByName(req.body.username)
+  db.getUserByName(req.body.username)
     .then(user => {
       return user && hash.verifyUser(user.hash, req.body.password)
     })
