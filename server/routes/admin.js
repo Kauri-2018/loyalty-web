@@ -1,7 +1,7 @@
 const express = require('express')
 
 const token = require('../auth/token')
-const db = require('../db/users')
+const db = require('../db/admin')
 const hash = require('../auth/hash')
 const router = express.Router()
 
@@ -14,13 +14,17 @@ router.post('/register', register, token.issue)
 router.post('/login', login, token.issue)
 
 router.get('/stats', token.decode, (req, res) => {
-  // db.getUsers()
-  //   .then(users => {
-  //     res.json(users)
-  //   })
-  //   .catch(err => {
-  //     res.status(500).send(err.message)
-  //   })
+  if (req.user.role === 'admin') {
+    db.getVisits()
+      .then(users => {
+        res.json(users)
+      })
+      .catch(err => {
+        res.status(500).send(err.message)
+      })
+  } else {
+    noAuthority(res)
+  }
 })
 
 router.get('/profile', token.decode, (req, res) => {
@@ -33,9 +37,13 @@ router.get('/profile', token.decode, (req, res) => {
 })
 
 function login (req, res, next) {
-  db.getCredsByName(req.body.username)
+  db.getUserByName(req.body.username)
     .then(user => {
-      return user && hash.verifyUser(user.hash, req.body.password)
+      if (user.role === 'admin') {
+        return user && hash.verifyUser(user.hash, req.body.password)
+      } else {
+        throw new Error('NO_Authority')
+      }
     })
     .then(isValid => {
       if (!isValid) {
@@ -43,9 +51,9 @@ function login (req, res, next) {
       }
       return isValid && next()
     })
-    .catch(() => {
+    .catch((err) => {
       res.status(400).json({
-        errorType: 'DATABASE_ERROR'
+        error: err.message
       })
     })
 }
@@ -68,5 +76,11 @@ function register (req, res, next) {
 function invalidCredentials (res) {
   res.status(400).json({
     errorType: 'INVALID_CREDENTIALS'
+  })
+}
+
+function noAuthority (res) {
+  res.status(400).json({
+    errorType: 'NO_Authority'
   })
 }

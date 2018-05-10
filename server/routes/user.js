@@ -26,7 +26,11 @@ router.get('/profile', token.decode, (req, res) => {
 function login (req, res, next) {
   db.getUserByName(req.body.username)
     .then(user => {
-      return user && hash.verifyUser(user.hash, req.body.password)
+      if (user.role === 'member') {
+        return user && hash.verifyUser(user.hash, req.body.password)
+      } else {
+        throw new Error('NO_Authority')
+      }
     })
     .then(isValid => {
       if (!isValid) {
@@ -34,9 +38,9 @@ function login (req, res, next) {
       }
       return isValid && next()
     })
-    .catch(() => {
+    .catch((err) => {
       res.status(400).json({
-        errorType: 'DATABASE_ERROR'
+        error: err.message
       })
     })
 }
