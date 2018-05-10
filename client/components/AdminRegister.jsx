@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import {receiveLogin} from '../actions/login'
-import {registerUser, getUser} from '../apiClient'
+import {registerAdmin, getUser} from '../apiClient'
 
 class AdmimRegister extends React.Component {
   constructor (props) {
@@ -24,7 +24,7 @@ class AdmimRegister extends React.Component {
 
   submitNewUser () {
     if (this.state.username && this.state.password && this.state.name) {
-      registerUser({...this.state})
+      registerAdmin({...this.state})
         .then(token => {
           // TODO Move to separate module at later stage
           localStorage.setItem('token', token)
