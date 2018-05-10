@@ -6,27 +6,45 @@ export function registerAdmin (userDetails) {
     .then(res => res.body.token)
 }
 
+export function loginAdmin (userDetails) {
+  return request.post('/api/v1/admin/login')
+    .send(userDetails)
+    .then(res => res.body.token)
+}
+
+export function getStatistics () {
+  const token = localStorage.getItem('token')
+  return request.get('/api/v1/admin/stats')
+    .set('Authorization', `Bearer ${token}`)
+    .then(res => {
+      return res.body
+    })
+}
+
 export function registerUser (userDetails) {
   return request.post('/api/v1/user/register')
     .send(userDetails)
     .then(res => res.body.token)
 }
 
-export function getUsers () {
-  return request.get('/api/v1/users')
-    .then(res => {
-      return res.body
-    })
+export function loginUser (userDetails) {
+  return request.post('/api/v1/user/login')
+    .send(userDetails)
+    .then(res => res.body.token)
 }
 
 export function getUser () {
   const token = localStorage.getItem('token')
-  return request.get('/api/v1/profile')
+  return request.get('/api/v1/user/profile')
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
       return res.body
     })
 }
+
+/* ================== */
+/* template below - for future usage */
+/* ================== */
 
 export function updateUserProfile (user) {
   const token = localStorage.getItem('token')
@@ -53,12 +71,6 @@ export function deleteItem (orderItemId) {
   const token = localStorage.getItem('token')
   return request.delete(`/api/v1/current-order/${orderItemId}`)
     .set('Authorization', `Bearer ${token}`)
-}
-
-export function loginUser (userDetails) {
-  return request.post('/api/v1/auth/login')
-    .send(userDetails)
-    .then(res => res)
 }
 
 export function orderIsComplete (orderId) {
