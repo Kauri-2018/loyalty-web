@@ -1,19 +1,17 @@
 const path = require('path')
 const express = require('express')
 
-const homeRoutes = require('./routes/home')
-const authRoutes = require('./routes/auth')
-const userRoutes = require('./routes/users')
-const profileRoutes = require('./routes/profile')
+const profile = require('./routes/profile')
+const admin = require('./routes/admin')
+const user = require('./routes/user')
 
 const server = express()
 
 server.use(express.static(path.join(__dirname, 'public')))
 
-// server.use('/api/v1/auth', authRoutes)
-// server.use('/api/v1/current-order', homeRoutes)
-// server.use('/api/v1/users', userRoutes)
-// server.use('/api/v1/profile', profileRoutes)
+server.use('/api/v1/profile', profile)
+server.use('/api/v1/admin', admin)
+server.use('/api/v1/user', user)
 
 server.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, './public/index.html'))
