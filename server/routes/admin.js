@@ -43,7 +43,7 @@ function login (req, res, next) {
       if (user.role === 'admin') {
         return user && hash.verifyUser(user.hash, req.body.password)
       } else {
-        throw new Error('NO_Authority')
+        throw new Error('Wrong Credentials')
       }
     })
     .then(isValid => {

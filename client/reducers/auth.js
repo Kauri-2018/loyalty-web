@@ -14,12 +14,11 @@ export default function (state = initState, action) {
     case LOGIN_REQUEST:
       return {
         ...state,
-        isFetching: action.isFetching,
-        isAuthenticated: action.isAuthenticated
+        isFetching: true,
+        isAuthenticated: false
       }
     case LOGIN_SUCCESS:
       return {
-        ...state,
         isFetching: false,
         isAuthenticated: true,
         user: action.user
