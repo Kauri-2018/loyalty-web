@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 
 import {receiveLogin} from '../actions/login'
 import {registerUser, getUser} from '../apiClient'
+import {set} from '../utils/localStorage'
+import ErrorMessage from './ErrorMessage'
 
 class UserRegister extends React.Component {
   constructor (props) {
@@ -25,13 +27,10 @@ class UserRegister extends React.Component {
   submitNewUser () {
     if (this.state.username && this.state.password && this.state.name) {
       registerUser({...this.state})
-        .then(token => {
-          // TODO Move to separate module at later stage
-          localStorage.setItem('token', token)
-        })
-        .then(getUser)
-        .then(user => this.props.loginUser(user))
-        .then(() => this.props.history.push('/profile'))
+      // .then(token => set('token', token))
+      // .then(getUser)
+      // .then(user => this.props.loginUser(user))
+      // .then(() => this.props.history.push('/profile'))
     }
   }
 
@@ -39,6 +38,7 @@ class UserRegister extends React.Component {
     return (
       <div className ='UserRegister'>
         <h2>UserRegister</h2>
+        <ErrorMessage />
         <div><input type='text' name='name' placeholder='First Name' onChange={this.handleChange}/></div>
         <div><input type='text' name='username' placeholder='Username' onChange={this.handleChange}/></div>
         <div><input type='password' placeholder='Password' name='password' onChange={this.handleChange}/></div>
