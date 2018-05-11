@@ -1,8 +1,9 @@
 const express = require('express')
 
 const token = require('../auth/token')
-const db = require('../db/users')
+const users = require('../db/users')
 const hash = require('../auth/hash')
+const visits = require('../db/visits')
 
 const router = express.Router()
 
@@ -15,7 +16,7 @@ router.post('/register', register, token.issue)
 router.post('/login', login, token.issue)
 
 router.get('/profile', token.decode, (req, res) => {
-  db.getUserByUserId(req.user.id)
+  users.getUserByUserId(req.user.id)
     .then(
       user => res.json(user))
     .catch(err => {
@@ -24,7 +25,8 @@ router.get('/profile', token.decode, (req, res) => {
 })
 
 router.post('/checkin', token.decode, (req, res) => {
-  db.checkIn(req.user.id)
+  // add visits.getVisits
+  visits.addVisit(req.user.id)
     .then(() => {
       res.sendStatus(200)
     })
@@ -34,7 +36,7 @@ router.post('/checkin', token.decode, (req, res) => {
 })
 
 function login (req, res, next) {
-  db.getUserByName(req.body.username)
+  users.getUserByName(req.body.username)
     .then(user => {
       if (user.role === 'member') {
         return user && hash.verifyUser(user.hash, req.body.password)
@@ -56,13 +58,13 @@ function login (req, res, next) {
 }
 
 function register (req, res, next) {
-  db.userExists(req.body.username)
+  users.userExists(req.body.username)
     .then(exists => {
       if (exists) {
         return res.status(400).json({message: 'User exists'})
       }
       const {username, name, password} = req.body
-      db.createUser(username, name, password)
+      users.createUser(username, name, password)
         .then(() => next())
     })
     .catch(err => {

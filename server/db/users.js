@@ -10,13 +10,6 @@ function getUserByName (username, db = connection) {
     .first()
 }
 
-function checkIn (userId) {
-  return ('visits')
-    .insert({
-      user_id: userId
-    })
-}
-
 function userExists (username, db = connection) {
   return db('users')
     .whereRaw('LOWER(username) LIKE ?', username.toLowerCase())
