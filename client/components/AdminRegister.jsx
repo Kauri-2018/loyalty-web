@@ -30,7 +30,7 @@ class AdmimRegister extends React.Component {
         .then(token => set('token', token))
         .then(getAdmin)
         .then(admin => this.props.loginUser(admin))
-        .then(() => this.props.history.push('/profile'))
+        .then(() => this.props.history.push('/'))
     }
   }
 

@@ -1,5 +1,6 @@
 import React from 'react'
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {BrowserRouter as Router, Route} from 'react-router-dom'
 
 import Home from './Home'
 import Footer from './Footer'
@@ -9,39 +10,77 @@ import AdminLogin from './AdminLogin'
 import AdminOptions from './AdminOptions'
 import Statistics from './Statistics'
 import AddNewUser from './AddNewUser'
-// import Profile from './Profile'
-// import NavBar from './NavBar'
-// import Barista from './Barista'
+import {get} from '../utils/localStorage'
+import {getAdmin} from '../apiClient'
+import {receiveLogin} from '../actions/login'
 
-const App = () => {
-  return (
-    <Router className='app'>
-      <div className='app container'>
-        <h1>Banner-placeholder</h1>
-        <Switch>
-          <Route path='/profile' component={ProfilePath} />
-          <Route path='/' component={HomePath} />
-        </Switch>
-        <Footer />
+class App extends React.Component {
+  constructor (props) {
+    super(props)
+    this.renderHome = this.renderHome.bind(this)
+    this.renderProfile = this.renderProfile.bind(this)
+    this.hasAuth = this.hasAuth.bind(this)
+  }
+
+  componentDidMount () {
+    this.hasAuth()
+  }
+
+  hasAuth () {
+    const token = get('token')
+    if (token) {
+      getAdmin()
+        .then(admin => {
+          this.props.dispatch(receiveLogin(admin))
+        })
+    }
+  }
+  renderHome () {
+    return (
+      <div>
+        <Route exact path='/' component={Home} />
+        <Route path='/adminregister' component={AdminRegister} />
+        <Route path='/userregister' component={UserRegister} />
+        <Route path='/adminlogin' component={AdminLogin} />
       </div>
-    </Router>
-  )
+    )
+  }
+
+  renderProfile () {
+    return (
+      <div>
+        <Route exact path='/' component={AdminOptions} />
+        <Route path='/statistics' component={Statistics} />
+        <Route path='/new' component={AddNewUser} />
+      </div>
+    )
+  }
+
+  render () {
+    return (
+      <Router className='app'>
+        <div className='app container'>
+          <h1>Banner-placeholder</h1>
+          {this.props.isAuth
+            ? this.renderProfile()
+            : this.renderHome()
+          }
+          <Footer />
+        </div>
+      </Router>
+    )
+  }
 }
 
-const HomePath = () => (
-  <div>
-    <Route exact path='/' component={Home} />
-    <Route path='/adminregister' component={AdminRegister} />
-    <Route path='/userregister' component={UserRegister} />
-    <Route path='/adminlogin' component={AdminLogin} />
-  </div>
-)
-
-const ProfilePath = () => (
-  <div>
-    <Route exact path='/profile' component={AdminOptions} />
-    <Route path='/profile/statistics' component={Statistics} />
-    <Route path='/profile/new' component={AddNewUser} />
-  </div>
-)
-export default App
+const mapStateToProps = (state) => {
+  return {
+    isAuth: state.auth.isAuthenticated,
+    user: state.auth.user || {}
+  }
+}
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     handleLogout: () => dispatch(logout())
+//   }
+// }
+export default connect(mapStateToProps)(App)
