@@ -8,6 +8,7 @@ function getVisits (db = connection) {
     .join('profiles', 'visits.user_id', '=', 'profiles.user_id')
     .select('visits.user_id', 'visits.timestamp', 'profiles.name', 'profiles.membership_number')
 }
+
 function getUserByName (username, db = connection) {
   return db('users')
     .select()
@@ -52,14 +53,14 @@ function getUser (userId, conn = connection) {
     .first()
 }
 
-function getUserByCredId (credsId, conn = connection) {
+function getAdminByUserId (userId, conn = connection) {
   return conn('users')
-    .where('cred_id', '=', credsId)
+    .where('id', '=', userId)
     .select(
-      'id as userId',
-      'cred_id as credId',
-      'name',
-      'order_text as orderText'
+      // check if we need id later
+      'id',
+      'username',
+      'role'
     )
     .first()
 }
@@ -76,7 +77,7 @@ function updateUser (user, conn = connection) {
 
 module.exports = {
   getUserByName,
-  getUserByCredId,
+  getAdminByUserId,
   userExists,
   createUser,
   getUser,

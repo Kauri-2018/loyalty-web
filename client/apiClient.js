@@ -42,6 +42,14 @@ export function getUser () {
     })
 }
 
+export function getAdmin () {
+  const token = localStorage.getItem('token')
+  return request.get('/api/v1/admin/profile')
+    .set('Authorization', `Bearer ${token}`)
+    .then(res => {
+      return res.body
+    })
+}
 /* ================== */
 /* template below - for future usage */
 /* ================== */
