@@ -27,15 +27,14 @@ router.get('/stats', token.decode, (req, res) => {
   }
 })
 
-// not sure what data we need on admin profile page
-// router.get('/profile', token.decode, (req, res) => {
+router.get('/profile', token.decode, (req, res) => {
 // token.decode -- now req.user will contain the contents of our token
-// db.getUserByCredId(req.user.id)
-//   .then(credsId => res.json(credsId))
-//   .catch(err => {
-//     res.status(500).send(err.message)
-//   })
-// })
+  db.getAdminByUserId(req.user.id)
+    .then(admin => res.json(admin))
+    .catch(err => {
+      res.status(500).send(err.message)
+    })
+})
 
 function login (req, res, next) {
   db.getUserByName(req.body.username)
