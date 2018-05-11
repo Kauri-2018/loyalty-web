@@ -7,7 +7,7 @@ class AddNewUser extends React.Component {
   }
   render () {
     return (
-      <div className='addNewUser'>
+      <div className='addnewuser'>
         <h3>addNewUser container</h3>
       </div>
     )

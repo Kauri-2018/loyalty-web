@@ -31,7 +31,7 @@ class UserRegister extends React.Component {
         })
         .then(getUser)
         .then(user => this.props.loginUser(user))
-        .then(() => this.props.history.push('/profile'))
+        .then(() => this.props.history.push('/'))
     }
   }
 
