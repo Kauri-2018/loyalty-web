@@ -10,7 +10,9 @@ function isFirstVisitToday (visits) {
     lastVisitDate !== currentDate
   ) {
     return true
-  } else return false
+  } else {
+    return false
+  }
 }
 
 module.exports = {

@@ -5,7 +5,7 @@ function getDateInfo (date) {
 }
 
 function getCurrentDate () {
-  const currentDate = Date.now()
+  const currentDate = moment()
   return getDateInfo(currentDate)
 }
 
