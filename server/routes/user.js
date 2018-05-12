@@ -7,8 +7,6 @@ const vs = require('../db/visits')
 const isFirstVisitToday = require('../checkin/isFirstVisitToday').isFirstVisitToday
 const isCorrectCode = require('../checkin/isCorrectCode').isCorrectCode
 
-// const verifyCheckIn = require('../checkin/verifyCheckIn').verifyCheckIn
-
 const router = express.Router()
 
 router.use(express.json())
@@ -32,8 +30,6 @@ router.post('/checkin', token.decode, (req, res) => {
   const userId = req.user.id
   vs.getVisits(userId)
     .then(visits => {
-      // isFirstVisitToday(visits)
-      // isCorrectCode(req.body.passcode)
       if (
         isFirstVisitToday(visits) === true &&
         isCorrectCode(req.body.passcode) === true
