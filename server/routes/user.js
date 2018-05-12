@@ -23,6 +23,16 @@ router.get('/profile', token.decode, (req, res) => {
     })
 })
 
+router.post('/checkin', token.decode, (req, res) => {
+  db.checkIn(req.user.id)
+    .then(() => {
+      res.sendStatus(200)
+    })
+    .catch(err => {
+      res.status(500).json({errorMessage: err.message})
+    })
+})
+
 function login (req, res, next) {
   db.getUserByName(req.body.username)
     .then(user => {
