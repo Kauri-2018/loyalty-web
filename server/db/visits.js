@@ -12,7 +12,9 @@ function addVisit (userId, db = connection) {
 function getVisits (userId, db = connection) {
   return db('visits')
     .where('user_id', '=', userId)
-    .select()
+    .select(
+      'timestamp'
+    )
 }
 
 module.exports = {

@@ -1,25 +1,27 @@
+const moment = require('moment')
+
 function getDateInfo (date) {
-  const day = date.getDate()
-  const month = date.getMonth()
-  const newDate = {
-    day,
-    month
-  }
-
-  return newDate
-}
-
-function getCurrentDate () {
-  const currentDate = new Date(Date.now())
-  getDateInfo(currentDate)
-}
-
-function convertDate (date) {
-  getDateInfo(date)
+  return moment(date).format('MMM Do YY')
 }
 
 module.exports = {
   getDateInfo,
-  getCurrentDate,
-  convertDate
+  getCurrentDate
 }
+
+
+
+function getCurrentDate () {
+  const currentDate = Date.now()
+  return getDateInfo(currentDate)
+}
+
+// function convertDate (date) {
+//   getDateInfo(date)
+// }
+
+// module.exports = {
+//   getDateInfo,
+//   getCurrentDate,
+//   convertDate
+// }
