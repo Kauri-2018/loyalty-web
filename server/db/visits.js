@@ -9,6 +9,13 @@ function addVisit (userId, db = connection) {
     })
 }
 
+function countVisits (userId, db = connection) {
+  return db('visits')
+    .where('user_id', '=', userId)
+    .count('user_id as n')
+    .then(count => count[0].n)
+}
+
 function getVisits (userId, db = connection) {
   return db('visits')
     .where('user_id', '=', userId)
@@ -19,5 +26,6 @@ function getVisits (userId, db = connection) {
 
 module.exports = {
   addVisit,
-  getVisits
+  getVisits,
+  countVisits
 }

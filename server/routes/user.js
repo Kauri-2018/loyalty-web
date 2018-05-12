@@ -6,7 +6,6 @@ const hash = require('../auth/hash')
 const vs = require('../db/visits')
 const verifyCheckIn = require('../checkin/verifyCheckIn').verifyCheckIn
 
-
 const router = express.Router()
 
 router.use(express.json())
@@ -33,8 +32,9 @@ router.post('/checkin', token.decode, (req, res) => {
       verifyCheckIn(visits, req.body.passcode)
       if (verifyCheckIn) {
         vs.addVisit(userId)
-          .then(() => {
-            res.sendStatus(200)
+          .then(() => vs.countVisits(userId))
+          .then(count => {
+            res.json({count})
           })
       } else {
         res.sendStatus(403).end()
