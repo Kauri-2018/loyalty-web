@@ -40,9 +40,9 @@ function getUser (userId, conn = connection) {
     .where('id', '=', userId)
     .select(
       'id as userId',
-      'cred_id as credId',
-      'name',
-      'order_text as orderText'
+      'hash',
+      'username',
+      'role'
     )
     .first()
 }
