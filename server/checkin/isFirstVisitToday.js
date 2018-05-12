@@ -10,7 +10,9 @@ function isFirstVisitToday (visits) {
     lastVisitDate !== currentDate
   ) {
     return true
-  } else {
+  } else if (
+    lastVisitDate === currentDate
+  ) {
     return false
   }
 }
