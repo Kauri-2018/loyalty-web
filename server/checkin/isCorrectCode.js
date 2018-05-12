@@ -4,7 +4,9 @@ function isCorrectCode (enteredString) {
     enteredString === correctString
   ) {
     return true
-  } else {
+  } else if (
+    enteredString !== correctString
+  ) {
     return false
   }
 }

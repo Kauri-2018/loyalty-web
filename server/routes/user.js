@@ -4,7 +4,10 @@ const token = require('../auth/token')
 const users = require('../db/users')
 const hash = require('../auth/hash')
 const vs = require('../db/visits')
-const verifyCheckIn = require('../checkin/verifyCheckIn').verifyCheckIn
+const isFirstVisitToday = require('../checkin/isFirstVisitToday').isFirstVisitToday
+const isCorrectCode = require('../checkin/isCorrectCode').isCorrectCode
+
+// const verifyCheckIn = require('../checkin/verifyCheckIn').verifyCheckIn
 
 const router = express.Router()
 
@@ -29,14 +32,21 @@ router.post('/checkin', token.decode, (req, res) => {
   const userId = req.user.id
   vs.getVisits(userId)
     .then(visits => {
-      verifyCheckIn(visits, req.body.passcode)
-      if (verifyCheckIn) {
+      // isFirstVisitToday(visits)
+      // isCorrectCode(req.body.passcode)
+      if (
+        isFirstVisitToday(visits) === true &&
+        isCorrectCode(req.body.passcode) === true
+      ) {
         vs.addVisit(userId)
           .then(() => vs.countVisits(userId))
           .then(count => {
             res.json({count})
           })
-      } else {
+      } else if (
+        isFirstVisitToday(visits) === false ||
+        isCorrectCode(req.body) === false
+      ) {
         res.sendStatus(403).end()
       }
     })
