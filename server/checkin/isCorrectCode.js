@@ -1,11 +1,12 @@
-function isCorrectCode (enteredCode) {
-  const correctString = 'monkeys'
-
+function isCorrectCode (enteredString) {
+  const correctString = process.env.PASSCODE
   if (
-    enteredCode === correctString
+    enteredString === correctString
   ) {
     return true
-  } else return false
+  } else {
+    return false
+  }
 }
 
 module.exports = {

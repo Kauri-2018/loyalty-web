@@ -4,7 +4,8 @@ const token = require('../auth/token')
 const users = require('../db/users')
 const hash = require('../auth/hash')
 const vs = require('../db/visits')
-const isFirstVisitToday = require('../checkin/isFirstVisitToday').isFirstVisitToday
+const verifyCheckIn = require('../checkin/verifyCheckIn').verifyCheckIn
+
 
 const router = express.Router()
 
@@ -25,20 +26,18 @@ router.get('/profile', token.decode, (req, res) => {
     })
 })
 
-router.get('/checkin', token.decode, (req, res) => {
+router.post('/checkin', token.decode, (req, res) => {
   const userId = req.user.id
   vs.getVisits(userId)
     .then(visits => {
-      isFirstVisitToday(visits)
-      if (isFirstVisitToday) {
+      verifyCheckIn(visits, req.body.passcode)
+      if (verifyCheckIn) {
         vs.addVisit(userId)
           .then(() => {
             res.sendStatus(200)
           })
-      } else if (!isFirstVisitToday) {
-        res.sendStatus(403).end()
       } else {
-        res.status(500).json({errorMessage: 'user already checked in'})
+        res.sendStatus(403).end()
       }
     })
 })
