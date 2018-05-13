@@ -40,6 +40,13 @@ export function getUser () {
     })
 }
 
+export function getUsers () {
+  const token = localStorage.getItem('token')
+  return request.get('/api/v1/admin/users')
+    .set('Authorization', `Bearer ${token}`)
+    .then(res => res)
+}
+
 export function getAdmin () {
   const token = localStorage.getItem('token')
   return request.get('/api/v1/admin/profile')

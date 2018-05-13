@@ -12,6 +12,12 @@ function getMembers (db = connection) {
     )
 }
 
+function getUsers (db = connection) {
+  return db('profiles')
+    .where('membership_type', '=', 'member')
+    .select()
+}
+
 function getVisits (db = connection) {
   return db('visits')
     .join('profiles', 'visits.user_id', '=', 'profiles.user_id')
@@ -91,6 +97,7 @@ module.exports = {
   userExists,
   createUser,
   getUser,
+  getUsers,
   getVisits,
   updateUser
 }

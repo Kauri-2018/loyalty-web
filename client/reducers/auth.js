@@ -1,5 +1,5 @@
 import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE} from '../actions/login'
-import {STATS_REQUEST, STATS_SUCCESS, STATS_FAILURE} from '../actions/stats'
+import {STATS_REQUEST, STATS_SUCCESS, STATS_FAILURE, USERS_REQUEST, USERS_SUCCESS, USERS_FAILURE} from '../actions/stats'
 import {LOGOUT} from '../actions/logout'
 import {UPDATE_USER} from '../actions/index'
 
@@ -8,6 +8,7 @@ const initState = {
   isAuthenticated: false,
   errorMessage: '',
   user: null,
+  users: [],
   stats: []
 }
 
@@ -49,6 +50,23 @@ export default function (state = initState, action) {
         stats: action.stats
       }
     case STATS_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        errorMessage: action.message
+      }
+    case USERS_REQUEST:
+      return {
+        ...state,
+        isFetching: true
+      }
+    case USERS_SUCCESS:
+      return {
+        ...state,
+        isFetching: false,
+        users: action.users
+      }
+    case USERS_FAILURE:
       return {
         ...state,
         isFetching: false,

@@ -1,12 +1,13 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {getStats} from '../actions/stats'
+import {getStats, getUsersData} from '../actions/stats'
 
 class Statistics extends React.Component {
   componentDidMount () {
     if (this.props.isAuth) {
       this.props.dispatch(getStats())
+      this.props.dispatch(getUsersData())
     }
   }
 
@@ -21,7 +22,8 @@ class Statistics extends React.Component {
 const mapStateToProps = state => {
   return {
     isAuth: state.auth.isAuthenticated,
-    user: state.auth.user || {}
+    user: state.auth.user || {},
+    stats: state.auth.stats || []
   }
 }
 
