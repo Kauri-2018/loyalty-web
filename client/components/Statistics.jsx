@@ -1,23 +1,24 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import {getStats} from '../actions/stats'
+
 class Statistics extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = { }
+  componentDidMount () {
+    if (this.props.isAuth) {
+      this.props.dispatch(getStats())
+    }
   }
+
   render () {
     return (
       <div className='statistics'>
-        {this.props.isAuth
-          ? <h3>Statistics container</h3>
-          : <p>Login first </p>
-        }
+        <h3>Statistics container</h3>
       </div>
     )
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     isAuth: state.auth.isAuthenticated,
     user: state.auth.user || {}

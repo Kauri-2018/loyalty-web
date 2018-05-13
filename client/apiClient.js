@@ -16,9 +16,7 @@ export function getStatistics () {
   const token = localStorage.getItem('token')
   return request.get('/api/v1/admin/stats')
     .set('Authorization', `Bearer ${token}`)
-    .then(res => {
-      return res.body
-    })
+    .then(res => res)
 }
 
 export function registerUser (userDetails) {
