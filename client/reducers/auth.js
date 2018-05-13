@@ -8,6 +8,8 @@ const initState = {
   isAuthenticated: false,
   errorMessage: '',
   user: null,
+  isUsersReceived: false,
+  isStatsReceived: false,
   users: [],
   stats: []
 }
@@ -47,6 +49,7 @@ export default function (state = initState, action) {
       return {
         ...state,
         isFetching: false,
+        isStatsReceived: true,
         stats: action.stats
       }
     case STATS_FAILURE:
@@ -64,6 +67,7 @@ export default function (state = initState, action) {
       return {
         ...state,
         isFetching: false,
+        isUsersReceived: true,
         users: action.users
       }
     case USERS_FAILURE:

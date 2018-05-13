@@ -1,21 +1,40 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 import Visitor from './Visitor'
+import {countUserVisits} from '../utils/stats'
 
-const VisitorTable = () => (
-  <div className='visitor-table'>
-    <table className='row'>
-      <thead>
-        <tr>
-          <th>Name</th>
-          <th>Number of Visits</th>
-        </tr>
-      </thead>
-      <tbody>
-        <Visitor />
-      </tbody>
-    </table>
-  </div>
-)
+class VisitorTable extends React.Component {
+  render () {
+    const {isStatsReceived, isUsersReceived, users, stats} = this.props
+    return (
+      <div className='visitor-table'>
+        <table className='row'>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Number of Visits</th>
+            </tr>
+          </thead>
+          <tbody>
+            {(isStatsReceived && isUsersReceived) && countUserVisits(stats, users)
+              .map((visitor, index) => (
+                <Visitor key={index} visitor={visitor} />))
+            }
+          </tbody>
+        </table>
+      </div>
+    )
+  }
+}
 
-export default VisitorTable
+const mapStateToProps = state => {
+  return {
+    isStatsReceived: state.auth.isStatsReceived,
+    isUsersReceived: state.auth.isUsersReceived,
+    users: state.auth.users || [],
+    stats: state.auth.stats || []
+  }
+}
+
+export default connect(mapStateToProps)(VisitorTable)
