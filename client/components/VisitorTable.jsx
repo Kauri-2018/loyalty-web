@@ -17,7 +17,7 @@ class VisitorTable extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {(isStatsReceived && isUsersReceived) && countUserVisits(stats, users)
+            {(isStatsReceived && isUsersReceived) && countUserVisits(users, stats)
               .map((visitor, index) => (
                 <Visitor key={index} visitor={visitor} />))
             }
