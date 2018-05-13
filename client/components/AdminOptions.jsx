@@ -12,11 +12,20 @@ class AdminOptions extends React.Component {
 
   render () {
     return (
-      <div className='adminoptions'>
-        <h3>Adminoptions container</h3>
-        <Link to="/statistics"><button>Statistics</button></Link>
-        <Link to="/new"><button>Add new users</button></Link>
-        <button onClick={this.props.handleLogout}>Logout</button>
+      <div className='adminoptions tabs is-centered'>
+        <ul>
+          <li>
+            <Link to="/statistics">Statistics</Link>
+          </li>
+          <li>
+            <Link to="/new">Add new users</Link>
+          </li>
+          <li>
+            <a onClick={this.props.handleLogout}>
+              <span>Logout</span>
+            </a>
+          </li>
+        </ul>
       </div>
     )
   }

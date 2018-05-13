@@ -9,11 +9,18 @@ class HomeOptions extends React.Component {
   }
   render () {
     return (
-      <div className='homeoptions'>
-        <h3>homeoptions container</h3>
-        <Link to="/adminlogin"><button>Admin Login</button></Link>
-        <Link to="/adminregister"><button>Register as admin</button></Link>
-        <Link to="/userRegister"><button>Register as loyalty member</button></Link>
+      <div className='homeoptions tabs is-centered'>
+        <ul>
+          <li>
+            <Link to="/adminlogin">Admin Login</Link>
+          </li>
+          <li>
+            <Link to="/adminregister">Register as admin</Link>
+          </li>
+          <li>
+            <Link to="/userRegister">Register as loyalty member</Link>
+          </li>
+        </ul>
       </div>
     )
   }
