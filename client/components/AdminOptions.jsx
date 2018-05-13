@@ -12,13 +12,13 @@ class AdminOptions extends React.Component {
 
   render () {
     return (
-      <div className='adminoptions tabs is-centered'>
+      <div className='adminoptions tabs is-centered is-boxed'>
         <ul>
           <li>
             <Link to="/statistics">Statistics</Link>
           </li>
           <li>
-            <Link to="/new">Add new users</Link>
+            <Link to="/new">Add New Users</Link>
           </li>
           <li>
             <Link to="/" onClick={this.props.handleLogout}>Logout</Link>
