@@ -10,6 +10,7 @@ import AdminLogin from './AdminLogin'
 import AdminOptions from './AdminOptions'
 import Statistics from './Statistics'
 import AddNewUser from './AddNewUser'
+import Logo from './Logo'
 import {get} from '../utils/localStorage'
 import {getAdmin} from '../apiClient'
 import {receiveLogin} from '../actions/login'
@@ -60,7 +61,9 @@ class App extends React.Component {
     return (
       <Router className='app'>
         <div className='app container'>
-          <h1>Banner-placeholder</h1>
+          <div className='logo'>
+            <Logo />
+          </div>
           {this.props.isAuth
             ? this.renderProfile()
             : this.renderHome()

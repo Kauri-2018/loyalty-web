@@ -1,3 +1,13 @@
 .errormessage {
   color: red
 }
+
+.logo {
+  width: 10em;
+  height: 10em;
+}
+
+img {
+  max-width: 100%;
+  max-height: 100%;
+}
