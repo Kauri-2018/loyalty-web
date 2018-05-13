@@ -22,18 +22,12 @@ class AdminOptions extends React.Component {
           </li>
           <li>
             <a onClick={this.props.handleLogout}>
-              <span>Logout</span>
+              Logout
             </a>
           </li>
         </ul>
       </div>
     )
-  }
-}
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.isAuthenticated,
-    user: state.auth.user || {}
   }
 }
 
@@ -42,4 +36,4 @@ const mapDispatchToProps = dispatch => {
     handleLogout: () => dispatch(logout())
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(AdminOptions)
+export default connect(null, mapDispatchToProps)(AdminOptions)
