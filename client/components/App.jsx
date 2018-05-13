@@ -62,7 +62,7 @@ class App extends React.Component {
       <Router className='app'>
         <div className='app container'>
           <div className='logo'>
-            LOGO
+            <Logo />
           </div>
           {this.props.isAuth
             ? this.renderProfile()
