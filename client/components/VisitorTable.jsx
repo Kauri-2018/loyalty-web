@@ -1,11 +1,21 @@
 import React from 'react'
 
-const VisitorTable = ({user, totalVisits, lastVisit}) => (
-  <tr className = 'visitor-table'>
-    <td>{user}</td>
-    <td>{totalVisits}</td>
-    <td>{lastVisit}</td>
-  </tr>
+import Visitor from './Visitor'
+
+const VisitorTable = () => (
+  <div className='visitor-table'>
+    <table className='row'>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Number of Visits</th>
+        </tr>
+      </thead>
+      <tbody>
+        <Visitor />
+      </tbody>
+    </table>
+  </div>
 )
 
 export default VisitorTable
