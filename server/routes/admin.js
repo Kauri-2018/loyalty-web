@@ -27,6 +27,20 @@ router.get('/stats', token.decode, (req, res) => {
   }
 })
 
+router.get('/users', token.decode, (req, res) => {
+  if (req.user.role === 'admin') {
+    db.getUsers()
+      .then(users => {
+        res.json(users)
+      })
+      .catch(err => {
+        res.status(500).send(err.message)
+      })
+  } else {
+    noAuthority(res)
+  }
+})
+
 router.get('/profile', token.decode, (req, res) => {
 // token.decode -- now req.user will contain the contents of our token
   db.getAdminByUserId(req.user.id)

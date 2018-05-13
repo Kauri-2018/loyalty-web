@@ -3,6 +3,21 @@ const config = require('./knexfile')[environment]
 const connection = require('knex')(config)
 const {generate} = require('../auth/hash')
 
+function getMembers (db = connection) {
+  return db('users')
+    .where('role', '=', 'member')
+    .select(
+      'id as userId',
+      'username'
+    )
+}
+
+function getUsers (db = connection) {
+  return db('profiles')
+    .where('membership_type', '=', 'member')
+    .select()
+}
+
 function getVisits (db = connection) {
   return db('visits')
     .join('profiles', 'visits.user_id', '=', 'profiles.user_id')
@@ -76,11 +91,13 @@ function updateUser (user, conn = connection) {
 }
 
 module.exports = {
+  getMembers,
   getUserByName,
   getAdminByUserId,
   userExists,
   createUser,
   getUser,
+  getUsers,
   getVisits,
   updateUser
 }

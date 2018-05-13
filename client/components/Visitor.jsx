@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Visitor = () => (
+const Visitor = (props) => (
   <tr>
-    <td>Name</td>
-    <td>Visits</td>
+    <td>{props.visitor.name}</td>
+    <td>{props.visitor.count}</td>
   </tr>
 )
 
