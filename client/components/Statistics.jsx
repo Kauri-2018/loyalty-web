@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import StatsContainer from './StatsContainer'
+
 class Statistics extends React.Component {
   constructor (props) {
     super(props)
@@ -10,7 +12,7 @@ class Statistics extends React.Component {
     return (
       <div className='statistics'>
         {this.props.isAuth
-          ? <h3>Statistics container</h3>
+          ? <StatsContainer />
           : <p>Login first </p>
         }
       </div>
