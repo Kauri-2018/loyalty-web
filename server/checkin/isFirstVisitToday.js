@@ -6,13 +6,9 @@ function isFirstVisitToday (visits) {
   const lastVisitDate = utils.getDateInfo(lastVisit)
   const currentDate = utils.getCurrentDate()
 
-  if (
-    lastVisitDate !== currentDate
-  ) {
+  if (lastVisitDate !== currentDate) {
     return true
-  } else if (
-    lastVisitDate === currentDate
-  ) {
+  } else {
     return false
   }
 }

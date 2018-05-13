@@ -30,19 +30,13 @@ router.post('/checkin', token.decode, (req, res) => {
   const userId = req.user.id
   vs.getVisits(userId)
     .then(visits => {
-      if (
-        isFirstVisitToday(visits) === true &&
-        isCorrectCode(req.body.passcode) === true
-      ) {
+      if (isFirstVisitToday(visits) && isCorrectCode(req.body.passcode)) {
         vs.addVisit(userId)
           .then(() => vs.countVisits(userId))
           .then(count => {
             res.json({count})
           })
-      } else if (
-        isFirstVisitToday(visits) === false ||
-        isCorrectCode(req.body) === false
-      ) {
+      } else if (!isFirstVisitToday(visits) || !isCorrectCode(req.body.passcode)) {
         res.sendStatus(403).end()
       }
     })
