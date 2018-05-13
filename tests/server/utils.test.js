@@ -10,3 +10,9 @@ test('returns date in correct format', () => {
   const actual = utils.getDateInfo(date)
   expect(actual).toBe(expected)
 })
+
+test('returns current date in correct format', () => {
+  const expected = 'May 13th 18'
+  const actual = utils.getCurrentDate()
+  expect(actual).toBe(expected)
+})
