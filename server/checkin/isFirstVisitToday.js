@@ -6,11 +6,11 @@ function isFirstVisitToday (visits) {
   const lastVisitDate = utils.getDateInfo(lastVisit)
   const currentDate = utils.getCurrentDate()
 
-  if (
-    lastVisitDate !== currentDate
-  ) {
+  if (lastVisitDate !== currentDate) {
     return true
-  } else return false
+  } else {
+    return false
+  }
 }
 
 module.exports = {
