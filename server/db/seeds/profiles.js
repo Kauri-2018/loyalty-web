@@ -8,7 +8,7 @@ exports.seed = function (knex, Promise) {
           id: 100,
           user_id: 1,
           name: 'Zoe',
-          photo_url: 'https://avatars2.githubusercontent.com/u/34232621?s=400&v=4',
+          photo_url: 'https://avatars1.githubusercontent.com/u/34232621?s=400&u=103cffdb554d455941265210849ee496973c7fa2&v=4',
           email: 'zoe@kauri.co.nz',
           expiry_date: '31/12/2020',
           membership_type: 'admin',
