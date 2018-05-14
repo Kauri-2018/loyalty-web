@@ -26,3 +26,9 @@ function countMatch (targetId, stats) {
   })
   return count
 }
+
+export function compareName (a, b) {
+  if (a.name < b.name) { return -1 }
+  if (a.name > b.name) { return 1 }
+  return 0
+}

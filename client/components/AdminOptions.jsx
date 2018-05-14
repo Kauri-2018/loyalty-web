@@ -12,19 +12,21 @@ class AdminOptions extends React.Component {
 
   render () {
     return (
-      <div className='adminoptions'>
-        <Link to="/statistics"><button>Statistics</button></Link>
-        <Link to="/new"><button>Add new users</button></Link>
-        <Link to='/profile'><button>My Account</button></Link>
-        <button onClick={this.props.handleLogout}>Logout</button>
+      <div className='adminoptions tabs is-centered is-boxed'>
+        <ul>
+          <li>
+            <Link to="/statistics">Statistics</Link>
+          </li>
+          <li>
+            <Link to="/new">Add New Users</Link>
+          </li>
+          <Link to='/profile'><button>My Account</button></Link>
+          <li>
+            <Link to="/" onClick={this.props.handleLogout}>Logout</Link>
+          </li>
+        </ul>
       </div>
     )
-  }
-}
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.isAuthenticated,
-    user: state.auth.user || {}
   }
 }
 
@@ -33,4 +35,4 @@ const mapDispatchToProps = dispatch => {
     handleLogout: () => dispatch(logout())
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(AdminOptions)
+export default connect(null, mapDispatchToProps)(AdminOptions)

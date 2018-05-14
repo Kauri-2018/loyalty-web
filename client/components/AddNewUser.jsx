@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import AdminOptions from './AdminOptions'
+
 class AddNewUser extends React.Component {
   constructor (props) {
     super(props)
@@ -9,19 +11,16 @@ class AddNewUser extends React.Component {
   render () {
     return (
       <div className='addnewuser'>
-        {this.props.isAuth
-          ? <h3>addnewuser container</h3>
-          : <p>Login first </p>
-        }
+        <AdminOptions />
       </div>
     )
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.isAuthenticated,
-    user: state.auth.user || {}
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     isAuth: state.auth.isAuthenticated,
+//     user: state.auth.user || {}
+//   }
+// }
 
-export default connect(mapStateToProps)(AddNewUser)
+export default connect(null)(AddNewUser)

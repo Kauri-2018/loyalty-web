@@ -39,7 +39,7 @@ class App extends React.Component {
   }
   renderHome () {
     return (
-      <div>
+      <div className='container is-fluid'>
         <Route exact path='/' component={Home} />
         <Route path='/adminregister' component={AdminRegister} />
         <Route path='/userregister' component={UserRegister} />
@@ -50,7 +50,7 @@ class App extends React.Component {
 
   renderProfile () {
     return (
-      <div>
+      <div className='container is-fluid'>
         <Route exact path='/' component={AdminOptions} />
         <Route path='/statistics' component={Statistics} />
         <Route path='/new' component={AddNewUser} />
@@ -62,8 +62,8 @@ class App extends React.Component {
   render () {
     return (
       <Router className='app'>
-        <div className='app container'>
-          <div className='logo'>
+        <div className='container is-fluid'>
+          <div className='container is-fluid logo'>
             <Logo />
           </div>
           {this.props.isAuth
