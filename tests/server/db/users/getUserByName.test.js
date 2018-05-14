@@ -15,7 +15,6 @@ afterEach(() => {
 test('getUserByName returns named user', () => {
   return db.getUserByName('tori', testDb)
     .then(user => {
-      console.log(user)
-      expect(user).toContain('tori')
+      expect(user.username).toMatch('tori')
     })
 })
