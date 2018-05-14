@@ -1,12 +1,12 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {getAdminInfo} from '../actions/stats'
+import {getAdmin} from '../apiClient'
 
 class AccountDetails extends React.Component {
   componentDidMount () {
     if (this.props.isAuth) {
-      this.props.dispatch(getAdminInfo())
+      getAdmin()
     }
   }
 
@@ -21,7 +21,7 @@ class AccountDetails extends React.Component {
             />
             <p>Name: {this.props.user.name}</p>
             <p>Email: {this.props.user.email}</p>
-            <p>Role: {this.props.user.membershipType}</p>
+            <p>Role: {this.props.user.role}</p>
             <p>Employee Number: {this.props.user.membershipNumber}</p>
             <p>Login Expires: {this.props.user.expDate}</p>
           </div>

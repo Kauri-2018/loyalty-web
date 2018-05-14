@@ -21,6 +21,9 @@ class AdminOptions extends React.Component {
             <Link to="/new">Add New Users</Link>
           </li>
           <li>
+            <Link to='/profile'>My Account</Link>
+          </li>
+          <li>
             <Link to="/" onClick={this.props.handleLogout}>Logout</Link>
           </li>
         </ul>
