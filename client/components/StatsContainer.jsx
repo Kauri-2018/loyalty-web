@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import VisitorTable from './VisitorTable'
 import TotalVisits from './TotalVisits'
+import UserProfile from './UserProfile'
 
 class StatsContainer extends React.Component {
   constructor (props) {
@@ -28,7 +29,7 @@ class StatsContainer extends React.Component {
         </div>
         <div className="tile is-parent">
           <div className="tile is-child box">
-            {this.state.user && <p>{this.state.user.name}</p>}
+            {this.state.user && <UserProfile user={this.state.user} />}
           </div>
         </div>
       </div>
