@@ -8,22 +8,22 @@ class VisitorTable extends React.Component {
   render () {
     const {isStatsReceived, isUsersReceived, users, stats} = this.props
     return (
-      <div className='visitor-table'>
-        <table className='table is-striped'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Number of Visits</th>
-            </tr>
-          </thead>
-          <tbody>
+      <table className='table is-fullwidth visitor-table'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Visits</th>
+          </tr>
+        </thead>
+        <div className="is-scrollable">
+          <tbody height="170px">
             {(isStatsReceived && isUsersReceived) && countUserVisits(users, stats)
               .map((visitor, index) => (
                 <Visitor key={index} visitor={visitor} />))
             }
           </tbody>
-        </table>
-      </div>
+        </div>
+      </table>
     )
   }
 }

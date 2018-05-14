@@ -4,9 +4,9 @@ import VisitorTable from './VisitorTable'
 import TotalVisits from './TotalVisits'
 
 const StatsContainer = () => (
-  <div className='tile is-ancestor totals-container'>
-    <div className="tile is-4 is-vertical is-parent">
-      <div className="tile is-child box">
+  <div className='tile is-ancestor'>
+    <div className="tile is-5 is-vertical is-parent">
+      <div className="tile is-child box totals-container">
         <TotalVisits />
       </div>
       <div className="tile is-child box">
