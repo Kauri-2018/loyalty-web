@@ -16,7 +16,7 @@ class AccountDetails extends React.Component {
         {this.props.isAuth
           ? <div className='account-details-list'>
             <img
-              className='profile-photo'
+              className='image is-128x128'
               src={`${this.props.user.profilePhoto}`}
             />
             <p>Name: {this.props.user.name}</p>
