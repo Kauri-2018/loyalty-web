@@ -79,6 +79,21 @@ function getAdminByUserId (userId, conn = connection) {
     )
     .first()
 }
+
+function getAdminProfile (userId, conn = connection) {
+  return conn('profiles')
+    .where('user_id', '=', userId)
+    .select(
+      'name',
+      'photo_url as profilePhoto',
+      'email',
+      'expiry_date as expDate',
+      'membership_type as membershipType',
+      'membership_number as membershipNumber'
+    )
+    .first()
+}
+
 function updateUser (user, conn = connection) {
   return conn('users')
     .where('id', '=', user.userId)
@@ -91,6 +106,7 @@ function updateUser (user, conn = connection) {
 }
 
 module.exports = {
+  getAdminProfile,
   getMembers,
   getUserByName,
   getAdminByUserId,

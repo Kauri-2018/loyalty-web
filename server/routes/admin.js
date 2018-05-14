@@ -43,8 +43,8 @@ router.get('/users', token.decode, (req, res) => {
 
 router.get('/profile', token.decode, (req, res) => {
 // token.decode -- now req.user will contain the contents of our token
-  db.getAdminByUserId(req.user.id)
-    .then(admin => res.json(admin))
+  db.getAdminProfile(req.user.id)
+    .then(profile => res.json(profile))
     .catch(err => {
       res.status(500).send(err.message)
     })

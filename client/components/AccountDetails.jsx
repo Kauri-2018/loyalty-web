@@ -15,11 +15,15 @@ class AccountDetails extends React.Component {
       <div className='account-details-container'>
         {this.props.isAuth
           ? <div className='account-details-list'>
-            <p>Username: {this.props.user.username}</p>
-            <p>Name: {this.props.user.username}</p>
-            <p>Role: {this.props.user.role}</p>
-            <p>Employee Number: membership-number</p>
-            <p>Login Expires: expiry-date</p>
+            <img
+              className='profile-photo'
+              src={`${this.props.user.profilePhoto}`}
+            />
+            <p>Name: {this.props.user.name}</p>
+            <p>Email: {this.props.user.email}</p>
+            <p>Role: {this.props.user.membershipType}</p>
+            <p>Employee Number: {this.props.user.membershipNumber}</p>
+            <p>Login Expires: {this.props.user.expDate}</p>
           </div>
           : <p>Login first</p>
         }

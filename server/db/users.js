@@ -53,6 +53,7 @@ function getUserByUserId (userId, conn = connection) {
     .select()
     .first()
 }
+
 function updateUser (user, conn = connection) {
   return conn('users')
     .where('id', '=', user.userId)
