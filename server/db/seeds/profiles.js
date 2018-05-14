@@ -33,7 +33,7 @@ exports.seed = function (knex, Promise) {
           expiry_date: '31/12/2020',
           membership_type: 'member',
           membership_number: '0000125'
-        }
+        },
         {
           id: 103,
           user_id: 4,
