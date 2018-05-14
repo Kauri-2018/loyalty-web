@@ -8,13 +8,13 @@ const TotalVisits = ({users, stats}) => (
     <div className="level-item has-text-centered">
       <div>
         <p className="heading">Friends</p>
-        <p className="title">{countTotalVisits(stats)}</p>
+        <p className="title">{countTotalFriends(users)}</p>
       </div>
     </div>
     <div className="level-item has-text-centered">
       <div>
         <p className="heading">Visits</p>
-        <p className="title">{countTotalFriends(users)}</p>
+        <p className="title">{countTotalVisits(stats)}</p>
       </div>
     </div>
   </nav>
