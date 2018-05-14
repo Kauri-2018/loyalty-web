@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {administratorLogin} from '../actions/login'
 import ErrorMessage from './ErrorMessage'
-import HomeOptions from './HomeOptions'
 
 class AdminLogin extends React.Component {
   constructor (props) {
@@ -24,19 +23,40 @@ class AdminLogin extends React.Component {
   attemptUserLogin () {
     if (this.state.username && this.state.password) {
       this.props.loginUser({...this.state})
-        .then(() => this.props.history.push('/'))
+        .then(() => this.props.history.push('/statistics'))
     }
   }
 
   render () {
     return (
-      <div className ='AdminLogin'>
-        <HomeOptions />
-        <ErrorMessage />
-        <div><input type='text' name='username' placeholder='Username' onChange={this.handleChange}/></div>
-        <div><input type='password' name='password' placeholder='Password' onChange={this.handleChange}/></div>
-        <button onClick={this.attemptUserLogin}>Log in</button>
-      </div>
+      <section className="hero is-light is-fullheight AdminLogin">
+        <div className="hero-body">
+          <div className="container has-text-centered">
+            <div className="column is-4 is-offset-4">
+              <h3 className="title has-text-grey">Login</h3>
+              <p className="subtitle has-text-grey">Please login to proceed.</p>
+              <ErrorMessage />
+              <div className="box">
+                <div className="field">
+                  <div className="control">
+                    <input className="input is-large" type="text" name='username' placeholder="Your Username" autoFocus="" onChange={this.handleChange} />
+                  </div>
+                </div>
+                <div className="field">
+                  <div className="control">
+                    <input className="input is-large" type="password" name='password' placeholder="Your Password" onChange={this.handleChange}/>
+                  </div>
+                </div>
+                <button className="button is-block is-info is-large is-fullwidth" onClick={this.attemptUserLogin}>Login</button>
+              </div>
+              <p className="has-text-grey">
+                <a href="../">Sign Up</a> &nbsp;·&nbsp;
+                <a href="../">Forgot Password?</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
     )
   }
 }

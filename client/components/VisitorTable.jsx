@@ -15,7 +15,7 @@ class VisitorTable extends React.Component {
             <th>Visits</th>
           </tr>
         </thead>
-        <tbody height="180px">
+        <tbody height="150px">
           {(isStatsReceived && isUsersReceived) &&
             countUserVisits(users, stats).sort(compareName)
               .map((visitor, index) => (

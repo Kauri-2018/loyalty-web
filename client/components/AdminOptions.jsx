@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {Link} from 'react-router-dom'
 
+import Logo from './Logo'
 import {logout} from '../actions/logout'
 
 class AdminOptions extends React.Component {
@@ -15,6 +16,9 @@ class AdminOptions extends React.Component {
       <div className='adminoptions tabs is-centered is-boxed'>
         <ul>
           <li>
+            <Link to="/"><Logo /></Link>
+          </li>
+          <li>
             <Link to="/statistics">Statistics</Link>
           </li>
           <li>
@@ -24,7 +28,7 @@ class AdminOptions extends React.Component {
             <Link to='/profile'>My Account</Link>
           </li>
           <li>
-            <Link to="/" onClick={this.props.handleLogout}>Logout</Link>
+            <Link to="/adminlogin" onClick={this.props.handleLogout}>Logout</Link>
           </li>
         </ul>
       </div>

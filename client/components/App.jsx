@@ -2,15 +2,14 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 
-import Home from './Home'
 import Footer from './Footer'
 import AdminRegister from './AdminRegister'
 import UserRegister from './UserRegister'
 import AdminLogin from './AdminLogin'
 import AdminOptions from './AdminOptions'
+import HomeOptions from './HomeOptions'
 import Statistics from './Statistics'
 import AddNewUser from './AddNewUser'
-import Logo from './Logo'
 import AccountContainer from './AccountContainer'
 import {get} from '../utils/localStorage'
 import {getAdmin} from '../apiClient'
@@ -39,8 +38,7 @@ class App extends React.Component {
   }
   renderHome () {
     return (
-      <div className='container is-fluid'>
-        <Route exact path='/' component={Home} />
+      <div className='container is-fluid site-body'>
         <Route path='/adminregister' component={AdminRegister} />
         <Route path='/userregister' component={UserRegister} />
         <Route path='/adminlogin' component={AdminLogin} />
@@ -50,8 +48,7 @@ class App extends React.Component {
 
   renderProfile () {
     return (
-      <div className='container is-fluid'>
-        <Route exact path='/' component={AdminOptions} />
+      <div className='container is-fluid site-body'>
         <Route path='/statistics' component={Statistics} />
         <Route path='/new' component={AddNewUser} />
         <Route path='/profile' component={AccountContainer} />
@@ -62,10 +59,18 @@ class App extends React.Component {
   render () {
     return (
       <Router className='app'>
-        <div className='container is-fluid'>
-          <div className='container is-fluid logo'>
-            <Logo />
-          </div>
+        <div>
+          <section className="hero is-black is-bold">
+            <div className="hero-foot">
+              <nav className="tabs">
+                <div className="container">
+                  {this.props.isAuth
+                    ? <Route path='/' component={AdminOptions} />
+                    : <Route path='/' component={HomeOptions} />}
+                </div>
+              </nav>
+            </div>
+          </section>
           {this.props.isAuth
             ? this.renderProfile()
             : this.renderHome()
