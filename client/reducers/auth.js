@@ -1,5 +1,19 @@
-import {LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE} from '../actions/login'
-import {STATS_REQUEST, STATS_SUCCESS, STATS_FAILURE, USERS_REQUEST, USERS_SUCCESS, USERS_FAILURE} from '../actions/stats'
+import {
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE
+} from '../actions/login'
+import {
+  STATS_REQUEST,
+  STATS_SUCCESS,
+  STATS_FAILURE,
+  USERS_REQUEST,
+  USERS_SUCCESS,
+  USERS_FAILURE,
+  ADMIN_REQUEST,
+  ADMIN_SUCCESS,
+  ADMIN_FAILURE
+} from '../actions/stats'
 import {LOGOUT} from '../actions/logout'
 import {UPDATE_USER} from '../actions/index'
 
@@ -80,6 +94,24 @@ export default function (state = initState, action) {
       return {
         ...state,
         user: action.user
+      }
+    case ADMIN_REQUEST:
+      return {
+        ...state,
+        isFetching: true
+      }
+    case ADMIN_SUCCESS:
+      return {
+        ...state,
+        isFetching: true,
+        isUsersReceived: true,
+        users: action.users
+      }
+    case ADMIN_FAILURE:
+      return {
+        ...state,
+        isFetching: false,
+        errorMessage: action.message
       }
     default:
       return state

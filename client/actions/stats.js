@@ -1,4 +1,4 @@
-import {getStatistics, getUsers} from '../apiClient'
+import {getStatistics, getUsers, getAdmin} from '../apiClient'
 
 export const STATS_REQUEST = 'STATS_REQUEST'
 export const STATS_SUCCESS = 'STATS_SUCCESS'
@@ -6,6 +6,9 @@ export const STATS_FAILURE = 'STATS_FAILURE'
 export const USERS_REQUEST = 'USERS_REQUEST'
 export const USERS_SUCCESS = 'USERS_SUCCESS'
 export const USERS_FAILURE = 'USERS_FAILURE'
+export const ADMIN_REQUEST = 'ADMIN_REQUEST'
+export const ADMIN_SUCCESS = 'ADMIN_SUCCESS'
+export const ADMIN_FAILURE = 'ADMIN_FAILURE'
 
 function requestStats () {
   return {
@@ -44,6 +47,45 @@ function usersError (message) {
   return {
     type: USERS_FAILURE,
     message
+  }
+}
+
+export function requestAdmin () {
+  return {
+    type: ADMIN_REQUEST
+  }
+}
+
+export function receiveAdmin (admin) {
+  return {
+    type: ADMIN_SUCCESS,
+    admin
+  }
+}
+
+export function adminError (message) {
+  return {
+    type: ADMIN_FAILURE,
+    message
+  }
+}
+
+export function getAdminInfo () {
+  return dispatch => {
+    dispatch(requestAdmin())
+    return getAdmin()
+      .then(res => {
+        if (res.status !== 200) {
+          dispatch(adminError(res.body.errorType))
+          return Promise.reject(res.body.errorType)
+        } else {
+          dispatch(receiveAdmin(res.body))
+        }
+      })
+      .catch((err) => {
+        dispatch(adminError(err.response.body.errorType))
+        return Promise.reject(err.response.body.errorType)
+      })
   }
 }
 
