@@ -1,27 +1,53 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
 import VisitorTable from './VisitorTable'
 import TotalVisits from './TotalVisits'
+import UserProfile from './UserProfile'
 
-const StatsContainer = () => (
-  <div className='tile is-ancestor'>
-    <div className="tile is-5 is-vertical is-parent">
-      <div className="tile is-child box totals-container">
-        <TotalVisits />
+class StatsContainer extends React.Component {
+  constructor (props) {
+    super(props)
+    this.state = {
+      user: {
+        name: 'Frank',
+        photo_url: 'https://avatars1.githubusercontent.com/u/23534573?s=400&u=96435be280d7141e296a0fc9795877cb4fc66192&v=4',
+        email: 'xuzy213@gmail.com',
+        expiry_date: '14/05/3018',
+        membership_number: '0000000'
+      }
+    }
+    this.getUserProfile = this.getUserProfile.bind(this)
+  }
+  getUserProfile (name) {
+    const usersArr = this.props.users
+    const user = usersArr.filter(user => user.name === name)
+    this.setState({user: user[0]})
+  }
+  render () {
+    return (
+      <div className='tile is-ancestor'>
+        <div className="tile is-5 is-vertical is-parent">
+          <div className="tile is-child box totals-container">
+            <TotalVisits />
+          </div>
+          <div className="tile is-child box">
+            <VisitorTable getUserProfile={this.getUserProfile} />
+          </div>
+        </div>
+        <div className="tile is-parent">
+          <div className="tile is-child box">
+            {<UserProfile user={this.state.user} />}
+          </div>
+        </div>
       </div>
-      <div className="tile is-child box">
-        <VisitorTable />
-      </div>
-    </div>
-    <div className="tile is-parent">
-      <div className="tile is-child box">
-        <p className="title">Three</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam semper diam at erat pulvinar, at pulvinar felis blandit. Vestibulum volutpat tellus diam, consequat gravida libero rhoncus ut. Morbi maximus, leo sit amet vehicula eleifend, nunc dui porta orci, quis semper odio felis ut quam.</p>
-        <p>Suspendisse varius ligula in molestie lacinia. Maecenas varius eget ligula a sagittis. Pellentesque interdum, nisl nec interdum maximus, augue diam porttitor lorem, et sollicitudin felis neque sit amet erat. Maecenas imperdiet felis nisi, fringilla luctus felis hendrerit sit amet. Aenean vitae gravida diam, finibus dignissim turpis. Sed eget varius ligula, at volutpat tortor.</p>
-        <p>Integer sollicitudin, tortor a mattis commodo, velit urna rhoncus erat, vitae congue lectus dolor consequat libero. Donec leo ligula, maximus et pellentesque sed, gravida a metus. Cras ullamcorper a nunc ac porta. Aliquam ut aliquet lacus, quis faucibus libero. Quisque non semper leo.</p>
-      </div>
-    </div>
-  </div>
-)
+    )
+  }
+}
+const mapStateToProps = state => {
+  return {
+    users: state.auth.users || []
+  }
+}
 
-export default StatsContainer
+export default connect(mapStateToProps)(StatsContainer)

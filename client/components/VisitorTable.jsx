@@ -6,20 +6,20 @@ import {countUserVisits, compareName} from '../utils/stats'
 
 class VisitorTable extends React.Component {
   render () {
-    const {isStatsReceived, isUsersReceived, users, stats} = this.props
+    const {getUserProfile, isStatsReceived, isUsersReceived, users, stats} = this.props
     return (
-      <table className='table is-fullwidth visitor-table'>
+      <table className='table is-fullwidth is-scrollable visitor-table'>
         <thead>
           <tr>
             <th>Name</th>
             <th>Visits</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody height="180px">
           {(isStatsReceived && isUsersReceived) &&
             countUserVisits(users, stats).sort(compareName)
               .map((visitor, index) => (
-                <Visitor key={index} visitor={visitor} />))
+                <Visitor getUserProfile={getUserProfile} key={index} visitor={visitor} />))
           }
         </tbody>
       </table>
