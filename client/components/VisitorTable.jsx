@@ -2,7 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import Visitor from './Visitor'
-import {countUserVisits} from '../utils/stats'
+import {countUserVisits, compareName} from '../utils/stats'
 
 class VisitorTable extends React.Component {
   render () {
@@ -17,7 +17,8 @@ class VisitorTable extends React.Component {
         </thead>
         <div className="is-scrollable">
           <tbody height="170px">
-            {(isStatsReceived && isUsersReceived) && countUserVisits(users, stats)
+            {(isStatsReceived && isUsersReceived) &&
+            countUserVisits(users, stats).sort(compareName)
               .map((visitor, index) => (
                 <Visitor key={index} visitor={visitor} />))
             }

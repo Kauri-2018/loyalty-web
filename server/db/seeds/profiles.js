@@ -7,7 +7,7 @@ exports.seed = function (knex, Promise) {
         {
           id: 100,
           user_id: 1,
-          name: 'zoe',
+          name: 'Zoe',
           photo_url: 'https://avatars2.githubusercontent.com/u/34232621?s=400&v=4',
           email: 'zoe@kauri.co.nz',
           expiry_date: '31/12/2020',
@@ -17,7 +17,7 @@ exports.seed = function (knex, Promise) {
         {
           id: 101,
           user_id: 2,
-          name: 'tori',
+          name: 'Tori',
           photo_url: 'https://avatars2.githubusercontent.com/u/32422558?s=400&v=4',
           email: 'tori@kauri.co.nz',
           expiry_date: '31/12/2020',
@@ -27,7 +27,7 @@ exports.seed = function (knex, Promise) {
         {
           id: 102,
           user_id: 3,
-          name: 'frank',
+          name: 'Frank',
           photo_url: 'https://avatars1.githubusercontent.com/u/23534573?s=460&v=4',
           email: 'frank@kauri.co.nz',
           expiry_date: '31/12/2020',
