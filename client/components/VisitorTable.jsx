@@ -2,28 +2,27 @@ import React from 'react'
 import {connect} from 'react-redux'
 
 import Visitor from './Visitor'
-import {countUserVisits} from '../utils/stats'
+import {countUserVisits, compareName} from '../utils/stats'
 
 class VisitorTable extends React.Component {
   render () {
     const {isStatsReceived, isUsersReceived, users, stats} = this.props
     return (
-      <div className='visitor-table'>
-        <table className='row'>
-          <thead>
-            <tr>
-              <th>Name</th>
-              <th>Number of Visits</th>
-            </tr>
-          </thead>
-          <tbody>
-            {(isStatsReceived && isUsersReceived) && countUserVisits(users, stats)
+      <table className='table is-fullwidth visitor-table'>
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Visits</th>
+          </tr>
+        </thead>
+        <tbody>
+          {(isStatsReceived && isUsersReceived) &&
+            countUserVisits(users, stats).sort(compareName)
               .map((visitor, index) => (
                 <Visitor key={index} visitor={visitor} />))
-            }
-          </tbody>
-        </table>
-      </div>
+          }
+        </tbody>
+      </table>
     )
   }
 }

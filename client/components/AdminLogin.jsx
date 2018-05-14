@@ -2,6 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import {administratorLogin} from '../actions/login'
 import ErrorMessage from './ErrorMessage'
+import HomeOptions from './HomeOptions'
 
 class AdminLogin extends React.Component {
   constructor (props) {
@@ -30,7 +31,7 @@ class AdminLogin extends React.Component {
   render () {
     return (
       <div className ='AdminLogin'>
-        <h2>AdminLogin</h2>
+        <HomeOptions />
         <ErrorMessage />
         <div><input type='text' name='username' placeholder='Username' onChange={this.handleChange}/></div>
         <div><input type='password' name='password' placeholder='Password' onChange={this.handleChange}/></div>
