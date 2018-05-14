@@ -6,7 +6,7 @@ import {countUserVisits, compareName} from '../utils/stats'
 
 class VisitorTable extends React.Component {
   render () {
-    const {isStatsReceived, isUsersReceived, users, stats} = this.props
+    const {getUserProfile, isStatsReceived, isUsersReceived, users, stats} = this.props
     return (
       <table className='table is-fullwidth visitor-table'>
         <thead>
@@ -19,7 +19,7 @@ class VisitorTable extends React.Component {
           {(isStatsReceived && isUsersReceived) &&
             countUserVisits(users, stats).sort(compareName)
               .map((visitor, index) => (
-                <Visitor key={index} visitor={visitor} />))
+                <Visitor getUserProfile={getUserProfile} key={index} visitor={visitor} />))
           }
         </tbody>
       </table>
