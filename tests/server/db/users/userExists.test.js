@@ -12,8 +12,15 @@ afterEach(() => {
   return env.cleanup(testDb)
 })
 
-test('userExists confirms an existing user', () => {
-  return db.userExists('tosfadasdri', testDb)
+test('userExists returns existing user', () => {
+  return db.userExists('wendy', testDb)
+    .then(user => {
+      expect(user).toBeTruthy()
+    })
+})
+
+test('userExists does not return non-existent user', () => {
+  return db.userExists('brody', testDb)
     .then(user => {
       expect(user).toBeFalsy()
     })
