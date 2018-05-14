@@ -1,6 +1,8 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import AccountDetails from './AccountDetails'
+
 class AccountContainer extends React.Component {
   constructor (props) {
     super(props)
@@ -10,7 +12,7 @@ class AccountContainer extends React.Component {
     return (
       <div className='account-wrapper'>
         {this.props.isAuth
-          ? <h3>Account stuff goes here</h3>
+          ? <AccountDetails />
           : <p>Login first</p>
         }
       </div>
