@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import {receiveLogin} from '../actions/login'
 import {registerUser, getUser} from '../apiClient'
+import HomeOptions from './HomeOptions'
 
 class UserRegister extends React.Component {
   constructor (props) {
@@ -38,7 +39,7 @@ class UserRegister extends React.Component {
   render () {
     return (
       <div className ='UserRegister'>
-        <h2>UserRegister</h2>
+        <HomeOptions />
         <div><input type='text' name='name' placeholder='First Name' onChange={this.handleChange}/></div>
         <div><input type='text' name='username' placeholder='Username' onChange={this.handleChange}/></div>
         <div><input type='password' placeholder='Password' name='password' onChange={this.handleChange}/></div>

@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import {getStats, getUsersData} from '../actions/stats'
 import StatsContainer from './StatsContainer'
+import AdminOptions from './AdminOptions'
 
 class Statistics extends React.Component {
   componentDidMount () {
@@ -15,10 +16,8 @@ class Statistics extends React.Component {
   render () {
     return (
       <div className='statistics'>
-        {this.props.isAuth
-          ? <StatsContainer />
-          : <p>Login first </p>
-        }
+        <AdminOptions />
+        <StatsContainer />
       </div>
     )
   }
