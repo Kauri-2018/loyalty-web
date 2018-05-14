@@ -31,7 +31,7 @@ class StatsContainer extends React.Component {
           <div className="tile is-child box totals-container">
             <TotalVisits />
           </div>
-          <div className="tile is-child box">
+          <div className="tile is-child box visitortable">
             <VisitorTable getUserProfile={this.getUserProfile} />
           </div>
         </div>

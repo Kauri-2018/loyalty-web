@@ -17,3 +17,7 @@ img {
   width: auto;
   position: absolute;
 }
+
+.visitortable {
+  min-height: 40vh;  
+}
