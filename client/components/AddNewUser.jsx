@@ -1,8 +1,6 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import AdminOptions from './AdminOptions'
-
 class AddNewUser extends React.Component {
   constructor (props) {
     super(props)
@@ -11,7 +9,6 @@ class AddNewUser extends React.Component {
   render () {
     return (
       <div className='addnewuser'>
-        <AdminOptions />
       </div>
     )
   }

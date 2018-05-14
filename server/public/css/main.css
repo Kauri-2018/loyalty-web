@@ -17,3 +17,18 @@ img {
   width: auto;
   position: absolute;
 }
+
+.visitortable {
+  min-height: 40vh;  
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+
+.site-body {
+  flex: 1;
+}

@@ -28,15 +28,15 @@ class StatsContainer extends React.Component {
     return (
       <div className='tile is-ancestor'>
         <div className="tile is-5 is-vertical is-parent">
-          <div className="tile is-child box totals-container">
+          <div className="tile is-child box totals-container is-warning">
             <TotalVisits />
           </div>
-          <div className="tile is-child box">
+          <div className="tile is-child box visitortable is-primary">
             <VisitorTable getUserProfile={this.getUserProfile} />
           </div>
         </div>
         <div className="tile is-parent">
-          <div className="tile is-child box">
+          <div className="tile is-child box is-success">
             {<UserProfile user={this.state.user} />}
           </div>
         </div>
