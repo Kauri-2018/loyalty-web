@@ -70,15 +70,22 @@ function getUser (userId, conn = connection) {
 
 function getAdminByUserId (userId, conn = connection) {
   return conn('users')
+    .join('profiles', 'profiles.user_id', '=', 'users.id')
     .where('id', '=', userId)
     .select(
       // check if we need id later
-      'id',
-      'username',
-      'role'
+      'users.id as id',
+      'users.username as username',
+      'users.role as role',
+      'profiles.name as name',
+      'profiles.photo_url as profilePhoto',
+      'profiles.email as email',
+      'profiles.expiry_date as expiryDate',
+      'membership_number as membershipNumber'
     )
     .first()
 }
+
 function updateUser (user, conn = connection) {
   return conn('users')
     .where('id', '=', user.userId)
