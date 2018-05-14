@@ -54,7 +54,7 @@ class App extends React.Component {
         <Route exact path='/' component={AdminOptions} />
         <Route path='/statistics' component={Statistics} />
         <Route path='/new' component={AddNewUser} />
-        <Route path='/account' component={AccountContainer} />
+        <Route path='/profile' component={AccountContainer} />
       </div>
     )
   }

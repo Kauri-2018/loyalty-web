@@ -15,7 +15,7 @@ class AdminOptions extends React.Component {
       <div className='adminoptions'>
         <Link to="/statistics"><button>Statistics</button></Link>
         <Link to="/new"><button>Add new users</button></Link>
-        <Link to='/account'><button>My Account</button></Link>
+        <Link to='/profile'><button>My Account</button></Link>
         <button onClick={this.props.handleLogout}>Logout</button>
       </div>
     )
