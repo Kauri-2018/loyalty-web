@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-class AdminAccount extends React.Component {
+class AccountContainer extends React.Component {
   constructor (props) {
     super(props)
     this.state = { }
@@ -24,4 +24,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(AdminAccount)
+export default connect(mapStateToProps)(AccountContainer)
