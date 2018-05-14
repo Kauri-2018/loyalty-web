@@ -15,15 +15,13 @@ class VisitorTable extends React.Component {
             <th>Visits</th>
           </tr>
         </thead>
-        <div className="is-scrollable">
-          <tbody height="170px">
-            {(isStatsReceived && isUsersReceived) &&
+        <tbody>
+          {(isStatsReceived && isUsersReceived) &&
             countUserVisits(users, stats).sort(compareName)
               .map((visitor, index) => (
                 <Visitor key={index} visitor={visitor} />))
-            }
-          </tbody>
-        </div>
+          }
+        </tbody>
       </table>
     )
   }
