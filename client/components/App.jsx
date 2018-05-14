@@ -11,6 +11,7 @@ import AdminOptions from './AdminOptions'
 import Statistics from './Statistics'
 import AddNewUser from './AddNewUser'
 import Logo from './Logo'
+import AccountContainer from './AccountContainer'
 import {get} from '../utils/localStorage'
 import {getAdmin} from '../apiClient'
 import {receiveLogin} from '../actions/login'
@@ -53,6 +54,7 @@ class App extends React.Component {
         <Route exact path='/' component={AdminOptions} />
         <Route path='/statistics' component={Statistics} />
         <Route path='/new' component={AddNewUser} />
+        <Route path='/profile' component={AccountContainer} />
       </div>
     )
   }
