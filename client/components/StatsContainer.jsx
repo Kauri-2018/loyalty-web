@@ -8,7 +8,15 @@ import UserProfile from './UserProfile'
 class StatsContainer extends React.Component {
   constructor (props) {
     super(props)
-    this.state = {}
+    this.state = {
+      user: {
+        name: 'Frank',
+        photo_url: 'https://avatars1.githubusercontent.com/u/23534573?s=400&u=96435be280d7141e296a0fc9795877cb4fc66192&v=4',
+        email: 'xuzy213@gmail.com',
+        expiry_date: '14/05/3018',
+        membership_number: '0000000'
+      }
+    }
     this.getUserProfile = this.getUserProfile.bind(this)
   }
   getUserProfile (name) {
@@ -29,7 +37,7 @@ class StatsContainer extends React.Component {
         </div>
         <div className="tile is-parent">
           <div className="tile is-child box">
-            {this.state.user && <UserProfile user={this.state.user} />}
+            {<UserProfile user={this.state.user} />}
           </div>
         </div>
       </div>
