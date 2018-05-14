@@ -23,7 +23,7 @@ class AccountDetails extends React.Component {
             <p>Email: {this.props.user.email}</p>
             <p>Role: {this.props.user.role}</p>
             <p>Employee Number: {this.props.user.membershipNumber}</p>
-            <p>Login Expires: {this.props.user.expDate}</p>
+            <p>Login Expires: {this.props.user.expiryDate}</p>
           </div>
           : <p>Login first</p>
         }

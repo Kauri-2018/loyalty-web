@@ -71,9 +71,8 @@ function getUser (userId, conn = connection) {
 function getAdminByUserId (userId, conn = connection) {
   return conn('users')
     .join('profiles', 'profiles.user_id', '=', 'users.id')
-    .where('id', '=', userId)
+    .where('users.id', '=', userId)
     .select(
-      // check if we need id later
       'users.id as id',
       'users.username as username',
       'users.role as role',
@@ -81,7 +80,7 @@ function getAdminByUserId (userId, conn = connection) {
       'profiles.photo_url as profilePhoto',
       'profiles.email as email',
       'profiles.expiry_date as expiryDate',
-      'membership_number as membershipNumber'
+      'profiles.membership_number as membershipNumber'
     )
     .first()
 }
