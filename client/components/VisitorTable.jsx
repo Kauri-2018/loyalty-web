@@ -9,7 +9,7 @@ class VisitorTable extends React.Component {
     const {isStatsReceived, isUsersReceived, users, stats} = this.props
     return (
       <div className='visitor-table'>
-        <table className='row'>
+        <table className='table is-striped'>
           <thead>
             <tr>
               <th>Name</th>
