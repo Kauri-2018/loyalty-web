@@ -5,7 +5,6 @@ import {receiveLogin} from '../actions/login'
 import {registerAdmin, getAdmin} from '../apiClient'
 import {set} from '../utils/localStorage'
 import ErrorMessage from './ErrorMessage'
-import HomeOptions from './HomeOptions'
 
 class AdmimRegister extends React.Component {
   constructor (props) {
@@ -38,7 +37,6 @@ class AdmimRegister extends React.Component {
   render () {
     return (
       <div className ='AdmimRegister'>
-        <HomeOptions />
         <ErrorMessage />
         <div><input type='text' name='name' placeholder='First Name' onChange={this.handleChange}/></div>
         <div><input type='text' name='username' placeholder='Username' onChange={this.handleChange}/></div>
