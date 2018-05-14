@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 import {receiveLogin} from '../actions/login'
 import {registerUser, getUser} from '../apiClient'
+import ErrorMessage from './ErrorMessage'
 
 class UserRegister extends React.Component {
   constructor (props) {
@@ -37,12 +38,35 @@ class UserRegister extends React.Component {
 
   render () {
     return (
-      <div className ='UserRegister'>
-        <div><input type='text' name='name' placeholder='First Name' onChange={this.handleChange}/></div>
-        <div><input type='text' name='username' placeholder='Username' onChange={this.handleChange}/></div>
-        <div><input type='password' placeholder='Password' name='password' onChange={this.handleChange}/></div>
-        <button onClick={this.submitNewUser}>Register</button>
-      </div>
+      <section className="hero is-light is-fullheight userregister">
+        <div className="hero-body">
+          <div className="container has-text-centered">
+            <div className="column is-4 is-offset-4">
+              <h3 className="title has-text-grey">Register</h3>
+              <p className="subtitle has-text-grey">as Member</p>
+              <ErrorMessage />
+              <div className="box">
+                <div className="field">
+                  <div className="control">
+                    <input className="input is-large" type="text" name='name' placeholder="Your Fullname" autoFocus="" onChange={this.handleChange} />
+                  </div>
+                </div>
+                <div className="field">
+                  <div className="control">
+                    <input className="input is-large" type="text" name='username' placeholder="Your Username" autoFocus="" onChange={this.handleChange} />
+                  </div>
+                </div>
+                <div className="field">
+                  <div className="control">
+                    <input className="input is-large" type="password" name='password' placeholder="Your Password" onChange={this.handleChange}/>
+                  </div>
+                </div>
+                <button className="button is-block is-info is-large is-fullwidth" onClick={this.submitNewUser}>Register</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     )
   }
 }

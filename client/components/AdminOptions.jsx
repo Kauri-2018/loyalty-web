@@ -28,7 +28,7 @@ class AdminOptions extends React.Component {
             <Link to='/profile'>My Account</Link>
           </li>
           <li>
-            <Link to="/" onClick={this.props.handleLogout}>Logout</Link>
+            <Link to="/adminlogin" onClick={this.props.handleLogout}>Logout</Link>
           </li>
         </ul>
       </div>
