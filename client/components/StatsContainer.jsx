@@ -57,9 +57,6 @@ class StatsContainer extends React.Component {
                   <VisitorTable getUserProfile={this.getUserProfile} />
                 </div>
               </div>
-              <footer className="card-footer">
-                <a href="#" className="card-footer-item">View All</a>
-              </footer>
             </div>
           </div>
           <div className="column is-6">
