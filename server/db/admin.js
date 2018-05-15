@@ -85,6 +85,8 @@ function getAdminByUserId (userId, conn = connection) {
     .first()
 }
 
+// This will need testing eventually when we change it to ours
+
 function updateUser (user, conn = connection) {
   return conn('users')
     .where('id', '=', user.userId)
