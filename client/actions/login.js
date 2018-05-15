@@ -1,4 +1,4 @@
-import {loginAdmin, getUser} from '../apiClient'
+import {loginAdmin, getAdmin} from '../apiClient'
 import {set} from '../utils/localStorage'
 export const LOGIN_REQUEST = 'LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
@@ -34,7 +34,7 @@ export function administratorLogin (userDetails) {
           return Promise.reject(res.body.message)
         } else {
           set('token', res.body.token)
-          getUser()
+          getAdmin()
             .then(user => {
               dispatch(receiveLogin(user))
             })

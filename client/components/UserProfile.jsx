@@ -21,7 +21,6 @@ const UserProfile = (props) => {
             <p className="subtitle is-6">Membership Number: {membership_number}</p>
           </div>
         </div>
-
         <div className="content">
           Email: {email}
           <br/>
