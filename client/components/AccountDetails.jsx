@@ -12,22 +12,39 @@ class AccountDetails extends React.Component {
 
   render () {
     return (
-      <div className='account-details-container'>
-        {this.props.isAuth
-          ? <div className='account-details-list'>
-            <img
-              className='image is-128x128'
-              src={`${this.props.user.profilePhoto}`}
-            />
-            <p>Name: {this.props.user.name}</p>
-            <p>Email: {this.props.user.email}</p>
-            <p>Role: {this.props.user.role}</p>
-            <p>Employee Number: {this.props.user.membershipNumber}</p>
-            <p>Login Expires: {this.props.user.expiryDate}</p>
+      <div className="container account-details-container">
+        <section className="articles">
+          <div className="column is-8 is-offset-2">
+            <div className="card article">
+              <div className="card-content">
+                <div className="media">
+                  <div className="media-center">
+                    <img src={this.props.user.profilePhoto} className="author-image" alt="Placeholder image" />
+                  </div>
+                  <div className="media-content has-text-centered">
+                    <p className="title article-title">{this.props.user.name}</p>
+                    <p className="subtitle is-6 article-subtitle">
+                      {this.props.user.role}
+                    </p>
+                  </div>
+                </div>
+                <div className="content article-body">
+                  <p>
+                    Email: {this.props.user.email}
+                  </p>
+                  <p>
+                    Membership Number: {this.props.user.membershipNumber}
+                  </p>
+                  <p>
+                    Expiry Date: {this.props.user.expiryDate}
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
-          : <p>Login first</p>
-        }
+        </section>
       </div>
+
     )
   }
 }
