@@ -14,7 +14,7 @@ nock('http://localhost')
   .post('/api/v1/user/login')
   .reply(200, userDetails)
 
-test('loginAdmin sends post req to server', () => {
+test('loginUser sends post req to server', () => {
   const expected = token
   return loginUser(userDetails)
     .then(res => {
