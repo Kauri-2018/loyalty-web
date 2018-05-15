@@ -8,8 +8,15 @@ class AddNewUser extends React.Component {
   }
   render () {
     return (
-      <div className='addnewuser'>
-      </div>
+      <article className="message is-warning is-large">
+        <div className="message-header message-header-padding">
+          <p>Coming Soon</p>
+          <button className="delete" aria-label="delete"></button>
+        </div>
+        <div className="message-body">
+          <strong>NO TIME</strong> to write the code yet.
+        </div>
+      </article>
     )
   }
 }
