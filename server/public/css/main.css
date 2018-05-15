@@ -96,3 +96,7 @@ margin: 0 6rem;
 .promo-block .container {
 margin: 1rem 5rem;
 }
+
+.visitor-tr {
+cursor: pointer;
+}
