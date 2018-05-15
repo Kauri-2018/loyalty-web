@@ -1,15 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {getAdmin} from '../apiClient'
-
 class AccountDetails extends React.Component {
-  componentDidMount () {
-    if (this.props.isAuth) {
-      getAdmin()
-    }
-  }
-
   render () {
     return (
       <div className="container account-details-container">
@@ -19,7 +11,7 @@ class AccountDetails extends React.Component {
               <div className="card-content">
                 <div className="media">
                   <div className="media-center">
-                    <img src={this.props.user.profilePhoto} className="author-image" alt="Placeholder image" />
+                    <img src={this.props.user.photo_url} className="author-image" alt="Placeholder image" />
                   </div>
                   <div className="media-content has-text-centered">
                     <p className="title article-title">{this.props.user.name}</p>

@@ -11,10 +11,7 @@ class AccountContainer extends React.Component {
   render () {
     return (
       <div className='account-wrapper'>
-        {this.props.isAuth
-          ? <AccountDetails />
-          : <p>Login first</p>
-        }
+        <AccountDetails />
       </div>
     )
   }
