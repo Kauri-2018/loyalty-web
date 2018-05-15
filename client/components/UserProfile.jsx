@@ -4,14 +4,18 @@ const UserProfile = (props) => {
   const {name, photo_url, email, expiry_date, membership_number} = props.user
   return (
     <div className="card">
-      <div className="card-image">
-        <figure className="image is-4by3">
-          <img src={photo_url} alt={name} />
-        </figure>
-      </div>
-
+      <header className="card-header">
+        <p className="card-header-title">
+          Profile
+        </p>
+      </header>
       <div className="card-content">
         <div className="media">
+          <div className="media-left">
+            <figure className="image is-48x48">
+              <img src={photo_url} alt={name} />
+            </figure>
+          </div>
           <div className="media-content">
             <p className="title is-4">{name}</p>
             <p className="subtitle is-6">Membership num: {membership_number}</p>
@@ -25,6 +29,7 @@ const UserProfile = (props) => {
         </div>
       </div>
     </div>
+
   )
 }
 

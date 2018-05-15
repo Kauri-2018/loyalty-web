@@ -8,14 +8,14 @@ class VisitorTable extends React.Component {
   render () {
     const {getUserProfile, isStatsReceived, isUsersReceived, users, stats} = this.props
     return (
-      <table className='table is-fullwidth is-scrollable visitor-table'>
+      <table className='table is-fullwidth is-striped'>
         <thead>
           <tr>
             <th>Name</th>
             <th>Visits</th>
           </tr>
         </thead>
-        <tbody height="150px">
+        <tbody>
           {(isStatsReceived && isUsersReceived) &&
             countUserVisits(users, stats).sort(compareName)
               .map((visitor, index) => (

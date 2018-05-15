@@ -26,17 +26,43 @@ class StatsContainer extends React.Component {
   }
   render () {
     return (
-      <div className='tile is-ancestor'>
-        <div className="tile is-5 is-vertical is-parent">
-          <div className="tile is-child box totals-container is-warning">
-            <TotalVisits />
+      <div className="column is-12">
+        <section className="hero is-info welcome is-small">
+          <div className="hero-body">
+            <div className="container">
+              <h1 className="title">
+                Hello, Admin.
+              </h1>
+              <h2 className="subtitle">
+                I hope you are having a great day!
+              </h2>
+            </div>
           </div>
-          <div className="tile is-child box visitortable is-primary">
-            <VisitorTable getUserProfile={this.getUserProfile} />
+        </section>
+
+        <section className="info-tiles">
+          <TotalVisits />
+        </section>
+
+        <div className="columns">
+          <div className="column is-6">
+            <div className="card events-card">
+              <header className="card-header">
+                <p className="card-header-title">
+                  Members List
+                </p>
+              </header>
+              <div className="card-table">
+                <div className="content">
+                  <VisitorTable getUserProfile={this.getUserProfile} />
+                </div>
+              </div>
+              <footer className="card-footer">
+                <a href="#" className="card-footer-item">View All</a>
+              </footer>
+            </div>
           </div>
-        </div>
-        <div className="tile is-parent">
-          <div className="tile is-child box is-success">
+          <div className="column is-6">
             {<UserProfile user={this.state.user} />}
           </div>
         </div>
