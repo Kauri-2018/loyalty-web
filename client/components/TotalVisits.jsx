@@ -1,16 +1,29 @@
 import React from 'react'
+import {connect} from 'react-redux'
 
-const TotalVisits = () => (
-  <div className='totals-container'>
-    <div className='total-members'>
-      <h3>Total members:</h3>
-      <p>This will be the total members</p>
+import {countTotalVisits, countTotalFriends} from '../utils/stats'
+
+const TotalVisits = ({users, stats}) => (
+  <div className="tile is-ancestor has-text-centered">
+    <div className="tile is-parent">
+      <article className="tile is-child box">
+        <p className="heading">Friends</p>
+        <p className="title">{countTotalFriends(users)}</p>
+      </article>
     </div>
-    <div className='total-visits'>
-      <h3>Total visits:</h3>
-      <p>This will be the total visits</p>
+    <div className="tile is-parent">
+      <article className="tile is-child box">
+        <p className="heading">Visits</p>
+        <p className="title">{countTotalVisits(stats)}</p>
+      </article>
     </div>
   </div>
 )
+const mapStateToProps = state => {
+  return {
+    users: state.auth.users || [],
+    stats: state.auth.stats || []
+  }
+}
 
-export default TotalVisits
+export default connect(mapStateToProps)(TotalVisits)

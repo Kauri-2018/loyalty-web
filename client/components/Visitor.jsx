@@ -1,10 +1,15 @@
 import React from 'react'
 
-const Visitor = () => (
-  <tr>
-    <td>Name</td>
-    <td>Visits</td>
-  </tr>
-)
+class Visitor extends React.Component {
+  render () {
+    const {getUserProfile, visitor} = this.props
+    return (
+      <tr>
+        <td onClick={() => getUserProfile(visitor.name)}>{visitor.name}</td>
+        <td>{visitor.count}</td>
+      </tr>
+    )
+  }
+}
 
 export default Visitor

@@ -11,3 +11,88 @@ img {
   max-width: 100%;
   max-height: 100%;
 }
+
+.table.is-scrollable tbody {
+  overflow-y: scroll;
+  width: auto;
+  position: absolute;
+}
+
+.visitortable {
+  min-height: 40vh;  
+}
+
+.app {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+
+.site-body {
+  flex: 1;
+}
+
+section.welcome {
+  margin-bottom: 5px;
+}
+
+.hero.welcome.is-info {
+  background: #36D1DC;
+  background: -webkit-linear-gradient(to right, #5B86E5, #36D1DC);
+  background: linear-gradient(to right, #5B86E5, #36D1DC);
+}
+.hero.welcome .title, .hero.welcome .subtitle {
+  color: hsl(192, 17%, 99%);
+}
+
+.events-card .card-table {
+  max-height: 250px;
+  overflow-y: scroll;
+}
+
+
+/* account details */
+
+.articles .content p {
+  line-height: 1.9;
+  margin: 15px 0;
+}
+.author-image {
+  position: absolute;
+  top: -30px;
+  left: 50%;
+  width: 60px;
+  height: 60px;
+  margin-left: -30px;
+  border: 3px solid #ccc;
+  border-radius: 50%;
+}
+.media-center {
+display: block;
+margin-bottom: 1rem;
+}
+
+.article, .promo-block {
+margin-top: 6rem;
+}
+div.column.is-8:first-child {
+padding-top: 0;
+margin-top: 0;
+}
+.article-title {
+font-size: 2rem;
+font-weight: lighter;
+line-height: 2;
+}
+.article-subtitle {
+color: #909AA0;
+margin-bottom: 3rem;
+}
+.article-body {
+line-height: 1.4;
+margin: 0 6rem;
+}
+.promo-block .container {
+margin: 1rem 5rem;
+}

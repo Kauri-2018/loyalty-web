@@ -16,9 +16,7 @@ export function getStatistics () {
   const token = localStorage.getItem('token')
   return request.get('/api/v1/admin/stats')
     .set('Authorization', `Bearer ${token}`)
-    .then(res => {
-      return res.body
-    })
+    .then(res => res)
 }
 
 export function registerUser (userDetails) {
@@ -40,6 +38,13 @@ export function getUser () {
     .then(res => {
       return res.body
     })
+}
+
+export function getUsers () {
+  const token = localStorage.getItem('token')
+  return request.get('/api/v1/admin/users')
+    .set('Authorization', `Bearer ${token}`)
+    .then(res => res)
 }
 
 export function getAdmin () {

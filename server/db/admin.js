@@ -3,6 +3,21 @@ const config = require('./knexfile')[environment]
 const connection = require('knex')(config)
 const {generate} = require('../auth/hash')
 
+function getMembers (db = connection) {
+  return db('users')
+    .where('role', '=', 'member')
+    .select(
+      'id as userId',
+      'username'
+    )
+}
+
+function getUsers (db = connection) {
+  return db('profiles')
+    .where('membership_type', '=', 'member')
+    .select()
+}
+
 function getVisits (db = connection) {
   return db('visits')
     .join('profiles', 'visits.user_id', '=', 'profiles.user_id')
@@ -55,15 +70,23 @@ function getUser (userId, conn = connection) {
 
 function getAdminByUserId (userId, conn = connection) {
   return conn('users')
-    .where('id', '=', userId)
+    .join('profiles', 'profiles.user_id', '=', 'users.id')
+    .where('users.id', '=', userId)
     .select(
-      // check if we need id later
-      'id',
-      'username',
-      'role'
+      'users.id as id',
+      'users.username as username',
+      'users.role as role',
+      'profiles.name as name',
+      'profiles.photo_url as profilePhoto',
+      'profiles.email as email',
+      'profiles.expiry_date as expiryDate',
+      'profiles.membership_number as membershipNumber'
     )
     .first()
 }
+
+// This will need testing eventually when we change it to ours
+
 function updateUser (user, conn = connection) {
   return conn('users')
     .where('id', '=', user.userId)
@@ -76,11 +99,13 @@ function updateUser (user, conn = connection) {
 }
 
 module.exports = {
+  getMembers,
   getUserByName,
   getAdminByUserId,
   userExists,
   createUser,
   getUser,
+  getUsers,
   getVisits,
   updateUser
 }

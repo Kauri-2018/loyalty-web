@@ -42,6 +42,12 @@ router.post('/checkin', token.decode, (req, res) => {
     })
 })
 
+router.get('/history', token.decode, (req, res) => {
+  const userId = req.user.id
+  vs.getVisits(userId)
+    .then(timestamps => res.json(timestamps))
+})
+
 function login (req, res, next) {
   users.getUserByName(req.body.username)
     .then(user => {

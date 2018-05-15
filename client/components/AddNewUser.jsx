@@ -8,20 +8,23 @@ class AddNewUser extends React.Component {
   }
   render () {
     return (
-      <div className='addnewuser'>
-        {this.props.isAuth
-          ? <h3>addnewuser container</h3>
-          : <p>Login first </p>
-        }
-      </div>
+      <article className="message is-warning is-large">
+        <div className="message-header message-header-padding">
+          <p>Coming Soon</p>
+          <button className="delete" aria-label="delete"></button>
+        </div>
+        <div className="message-body">
+          <strong>NO TIME</strong> to write the code yet.
+        </div>
+      </article>
     )
   }
 }
-const mapStateToProps = (state) => {
-  return {
-    isAuth: state.auth.isAuthenticated,
-    user: state.auth.user || {}
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     isAuth: state.auth.isAuthenticated,
+//     user: state.auth.user || {}
+//   }
+// }
 
-export default connect(mapStateToProps)(AddNewUser)
+export default connect(null)(AddNewUser)

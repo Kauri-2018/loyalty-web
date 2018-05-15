@@ -1,28 +1,30 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
+import {getStats, getUsersData} from '../actions/stats'
 import StatsContainer from './StatsContainer'
 
 class Statistics extends React.Component {
-  constructor (props) {
-    super(props)
-    this.state = { }
+  componentDidMount () {
+    if (this.props.isAuth) {
+      this.props.dispatch(getStats())
+      this.props.dispatch(getUsersData())
+    }
   }
+
   render () {
     return (
       <div className='statistics'>
-        {this.props.isAuth
-          ? <StatsContainer />
-          : <p>Login first </p>
-        }
+        <StatsContainer />
       </div>
     )
   }
 }
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
   return {
     isAuth: state.auth.isAuthenticated,
-    user: state.auth.user || {}
+    user: state.auth.user || {},
+    stats: state.auth.stats || []
   }
 }
 

@@ -1,5 +1,6 @@
 import React from 'react'
 
+import Logo from './Logo'
 import {Link} from 'react-router-dom'
 
 class HomeOptions extends React.Component {
@@ -9,11 +10,21 @@ class HomeOptions extends React.Component {
   }
   render () {
     return (
-      <div className='homeoptions'>
-        <h3>homeoptions container</h3>
-        <Link to="/adminlogin"><button>Admin Login</button></Link>
-        <Link to="/adminregister"><button>Register as admin</button></Link>
-        <Link to="/userRegister"><button>Register as loyalty member</button></Link>
+      <div className='homeoptions tabs is-centered is-boxed'>
+        <ul>
+          <li>
+            <Link to="/"><Logo /></Link>
+          </li>
+          <li>
+            <Link to="/adminlogin">Admin Login</Link>
+          </li>
+          <li>
+            <Link to="/adminregister">Register as Admin</Link>
+          </li>
+          <li>
+            <Link to="/userRegister">Register as Loyalty Member</Link>
+          </li>
+        </ul>
       </div>
     )
   }
