@@ -8,7 +8,7 @@ class VisitorTable extends React.Component {
   render () {
     const {getUserProfile, isStatsReceived, isUsersReceived, users, stats} = this.props
     return (
-      <table className='table is-fullwidth is-striped'>
+      <table className='table is-fullwidth is-striped is-hoverable'>
         <thead>
           <tr>
             <th>Name</th>
