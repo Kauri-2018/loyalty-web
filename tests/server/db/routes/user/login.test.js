@@ -4,18 +4,6 @@ jest.mock('../../../../../server/db/users', () => ({
   getUserByName: username => Promise.resolve(username === 'Pippin')
 }))
 
-// jest.mock('../../../../../server/auth/token', () => ({
-//   issue: (req, res) => {
-//     res.status(201).json({
-//       message: 'Authentication successful.',
-//       token: 'goosetoken'
-//     })
-//   },
-//   decode: (req, res, next) => {
-//     next()
-//   }
-// }))
-
 const server = require('../../../../../server/server')
 
 test('post /api/v1/user/login does not allow member login', () => {
