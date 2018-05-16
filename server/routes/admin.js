@@ -54,8 +54,8 @@ function login (req, res, next) {
   db.getUserByName(req.body.username)
     .then(user => {
       if (!user) {
-        return invalidCredentials(res)
-      } else if (user.role === 'admin') {
+        throw new Error('INVALID_CREDENTIALS')
+      } else if (user && user.role === 'admin') {
         return user
       }
     })
@@ -63,11 +63,11 @@ function login (req, res, next) {
       return hash.verifyUser(user.hash, req.body.password)
     })
     .then(isValid => {
-      return isValid ? next() : invalidCredentials(res)
+      return isValid ? next() : new Error('NO_Authority')
     })
-    .catch(() => {
+    .catch((err) => {
       res.status(400).json({
-        errorType: 'DATABASE_ERROR'
+        errorType: err.message || 'DATABASE_ERROR'
       })
     })
 }
@@ -87,14 +87,10 @@ function register (req, res, next) {
     })
 }
 
-function invalidCredentials (res) {
-  res.status(400).json({
-    errorType: 'INVALID_CREDENTIALS'
-  })
+function invalidCredentials () {
+  Error('INVALID_CREDENTIALS')
 }
 
-function noAuthority (res) {
-  res.status(400).json({
-    errorType: 'NO_Authority'
-  })
+function noAuthority () {
+  Error('NO_Authority')
 }
