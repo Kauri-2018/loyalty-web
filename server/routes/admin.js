@@ -51,7 +51,7 @@ router.get('/profile', token.decode, (req, res) => {
 })
 
 function login (req, res, next) {
-  db.getUserByName(req.body.usegetrname)
+  db.getUserByName(req.body.username)
     .then(user => {
       if (!user) {
         throw new Error('INVALID_CREDENTIALS')
