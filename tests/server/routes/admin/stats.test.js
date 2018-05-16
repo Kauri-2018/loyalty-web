@@ -35,7 +35,6 @@ const server = require('../../../../server/server')
 
 test('GET /api/v1/admin/stats gets all visits for all users', () => {
   const expected = 3
-
   return request(server)
     .get('/api/v1/admin/stats')
     .set('Accept', 'application/json')
