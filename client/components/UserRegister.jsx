@@ -1,8 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import {receiveLogin} from '../actions/login'
-import {registerUser, getUser} from '../apiClient'
+import {registerUser} from '../apiClient'
 import ErrorMessage from './ErrorMessage'
 
 class UserRegister extends React.Component {
@@ -26,13 +25,17 @@ class UserRegister extends React.Component {
   submitNewUser () {
     if (this.state.username && this.state.password && this.state.name) {
       registerUser({...this.state})
-        .then(token => {
-          // TODO Move to separate module at later stage
-          localStorage.setItem('token', token)
+        .then(res => {
+          if (res.status === 200) {
+            alert('New Member added into the database')
+          } else {
+            alert('Database error, try another username or password')
+          }
         })
-        .then(getUser)
-        .then(user => this.props.loginUser(user))
-        .then(() => this.props.history.push('/'))
+        .then(() => this.props.history.push('/adminlogin'))
+        .catch(err => {
+          alert(err.response.body.message)
+        })
     }
   }
 
@@ -71,12 +74,4 @@ class UserRegister extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loginUser: user => {
-      return dispatch(receiveLogin(user))
-    }
-  }
-}
-
-export default connect(null, mapDispatchToProps)(UserRegister)
+export default connect()(UserRegister)

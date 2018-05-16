@@ -53,21 +53,21 @@ router.get('/profile', token.decode, (req, res) => {
 function login (req, res, next) {
   db.getUserByName(req.body.username)
     .then(user => {
-      if (user.role === 'admin') {
-        return user && hash.verifyUser(user.hash, req.body.password)
-      } else {
-        throw new Error('Wrong Credentials')
+      if (!user) {
+        throw new Error('INVALID_CREDENTIALS')
+      } else if (user && user.role === 'admin') {
+        return user
       }
     })
+    .then(user => {
+      return hash.verifyUser(user.hash, req.body.password)
+    })
     .then(isValid => {
-      if (!isValid) {
-        return invalidCredentials(res)
-      }
-      return isValid && next()
+      return isValid ? next() : new Error('NO_Authority')
     })
     .catch((err) => {
       res.status(400).json({
-        errorType: err.message
+        errorType: err.message || 'DATABASE_ERROR'
       })
     })
 }
@@ -87,14 +87,10 @@ function register (req, res, next) {
     })
 }
 
-function invalidCredentials (res) {
-  res.status(400).json({
-    errorType: 'INVALID_CREDENTIALS'
-  })
+function invalidCredentials () {
+  Error('INVALID_CREDENTIALS')
 }
 
-function noAuthority (res) {
-  res.status(400).json({
-    errorType: 'NO_Authority'
-  })
+function noAuthority () {
+  Error('NO_Authority')
 }
