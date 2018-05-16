@@ -19,9 +19,6 @@ class HomeOptions extends React.Component {
             <Link to="/adminlogin">Admin Login</Link>
           </li>
           <li>
-            <Link to="/adminregister">Register as Admin</Link>
-          </li>
-          <li>
             <Link to="/userRegister">Register as Loyalty Member</Link>
           </li>
         </ul>
