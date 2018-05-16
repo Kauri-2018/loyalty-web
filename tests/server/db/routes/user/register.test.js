@@ -1,24 +1,35 @@
 const request = require('supertest')
 
-jest.mock('../../../../../server/routes/user', () => ({
-  register: () => Promise.resolve()
-  // invalidCredentials: res => Promise.resolve(res === 'INVALID_CREDENTIALS')
-}))
-
 jest.mock('../../../../../server/db/users', () => ({
   userExists: username => Promise.resolve(username === 'Pippin'),
-  createUser: (username, name, password) => Promise.resolve(
-    username === 'Pippin', name === 'Pippin', password === 'Pippin'
-  )
+  createUser: (username, name, password) => Promise.resolve()
+}))
+
+jest.mock('../../../../../server/auth/token', () => ({
+  issue: (req, res) => {
+    res.status(201).json({
+    message: 'Authentication successful.',
+    token: 'goosetoken'
+  })}
 }))
 
 const server = require('../../../../../server/server')
 
-test('post /api/v1/user/register', () => {
+test('post /api/v1/user/register detects existing user', () => {
   return request(server)
     .post('/api/v1/user/register')
-    .send({username: 'Merry'})
     .set('Accept', 'application/json')
+    .send({username: 'Pippin', name: 'Pippin', password: 'Pippin'})
+    .then(res => {
+      expect(res.statusCode).toBe(400)
+    })
+})
+
+test('post /api/v1/user/register detects non-existant user', () => {
+  return request(server)
+    .post('/api/v1/user/register')
+    .set('Accept', 'application/json')
+    .send({username: 'Merry', name: 'Merry', password: 'Merry'})
     .then(res => {
       expect(res.statusCode).toBe(201)
     })

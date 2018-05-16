@@ -78,7 +78,7 @@ function register (req, res, next) {
       }
       const {username, name, password} = req.body
       users.createUser(username, name, password)
-        .then(() => next())
+        .then(next)
     })
     .catch(err => {
       res.status(500).json({message: err.message})
