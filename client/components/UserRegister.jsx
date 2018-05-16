@@ -27,11 +27,10 @@ class UserRegister extends React.Component {
     if (this.state.username && this.state.password && this.state.name) {
       registerUser({...this.state})
         .then(token => {
-          // TODO Move to separate module at later stage
-          localStorage.setItem('token', token)
+          if (token) {
+            alert('New Member added into the database')
+          }
         })
-        .then(getUser)
-        .then(user => this.props.loginUser(user))
         .then(() => this.props.history.push('/'))
     }
   }
@@ -71,12 +70,4 @@ class UserRegister extends React.Component {
   }
 }
 
-const mapDispatchToProps = dispatch => {
-  return {
-    loginUser: user => {
-      return dispatch(receiveLogin(user))
-    }
-  }
-}
-
-export default connect(null, mapDispatchToProps)(UserRegister)
+export default connect()(UserRegister)
