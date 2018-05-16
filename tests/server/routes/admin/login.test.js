@@ -5,7 +5,8 @@ jest.mock('../../../../server/db/admin', () => ({
     id: 4,
     username: 'Aragorn',
     hash: 'gondorking',
-    role: 'admin'})
+    role: 'admin'
+  })
 }))
 
 jest.mock('../../../../server/auth/hash', () => ({
