@@ -1,5 +1,7 @@
 import request from 'superagent'
 
+import {get} from './utils/localStorage'
+
 export function registerAdmin (userDetails) {
   return request.post('/api/v1/admin/register')
     .send(userDetails)
@@ -13,7 +15,7 @@ export function loginAdmin (userDetails) {
 }
 
 export function getStatistics () {
-  const token = localStorage.getItem('token')
+  const token = get('token')
   return request.get('/api/v1/admin/stats')
     .set('Authorization', `Bearer ${token}`)
     .then(res => res)
@@ -32,7 +34,7 @@ export function loginUser (userDetails) {
 }
 
 export function getUser () {
-  const token = localStorage.getItem('token')
+  const token = get('token')
   return request.get('/api/v1/user/profile')
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
@@ -41,14 +43,14 @@ export function getUser () {
 }
 
 export function getUsers () {
-  const token = localStorage.getItem('token')
+  const token = get('token')
   return request.get('/api/v1/admin/users')
     .set('Authorization', `Bearer ${token}`)
     .then(res => res)
 }
 
 export function getAdmin () {
-  const token = localStorage.getItem('token')
+  const token = get('token')
   return request.get('/api/v1/admin/profile')
     .set('Authorization', `Bearer ${token}`)
     .then(res => {
