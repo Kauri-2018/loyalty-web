@@ -12,9 +12,9 @@ class StatsContainer extends React.Component {
       user: {
         name: 'Frank',
         photo_url: 'https://avatars1.githubusercontent.com/u/23534573?s=400&u=96435be280d7141e296a0fc9795877cb4fc66192&v=4',
-        email: 'xuzy213@gmail.com',
-        expiry_date: '14/05/3018',
-        membership_number: '0000000'
+        email: 'frank@kauri.co.nz',
+        expiry_date: '31/12/2020',
+        membership_number: '0000125'
       }
     }
     this.getUserProfile = this.getUserProfile.bind(this)
