@@ -40,6 +40,9 @@ router.post('/checkin', token.decode, (req, res) => {
         res.sendStatus(403).end()
       }
     })
+    .catch(err => {
+      res.status(500).send(err.message)
+    })
 })
 
 router.get('/history', token.decode, (req, res) => {
