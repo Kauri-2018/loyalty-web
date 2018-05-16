@@ -9,7 +9,7 @@ router.use(express.json())
 
 module.exports = router
 
-// router.post('/register', register, token.issue)
+router.post('/register', register, token.issue)
 
 router.post('/login', login, token.issue)
 
@@ -72,20 +72,20 @@ function login (req, res, next) {
     })
 }
 
-// function register (req, res, next) {
-//   db.userExists(req.body.username)
-//     .then(exists => {
-//       if (exists) {
-//         return res.status(400).json({message: 'User exists'})
-//       }
-//       const {username, name, password} = req.body
-//       db.createUser(username, name, password)
-//         .then(() => next())
-//     })
-//     .catch(err => {
-//       res.status(500).json({message: err.message})
-//     })
-// }
+function register (req, res, next) {
+  db.userExists(req.body.username)
+    .then(exists => {
+      if (exists) {
+        return res.status(400).json({message: 'User exists'})
+      }
+      const {username, name, password} = req.body
+      db.createUser(username, name, password)
+        .then(() => next())
+    })
+    .catch(err => {
+      res.status(500).json({message: err.message})
+    })
+}
 
 function invalidCredentials (res) {
   res.status(400).json({
