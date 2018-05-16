@@ -24,7 +24,7 @@ export function getStatistics () {
 export function registerUser (userDetails) {
   return request.post('/api/v1/user/register')
     .send(userDetails)
-    .then(res => res.body.token)
+    .then(res => res)
 }
 
 export function loginUser (userDetails) {

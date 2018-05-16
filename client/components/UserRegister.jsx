@@ -3,7 +3,6 @@ import {connect} from 'react-redux'
 
 import {registerUser} from '../apiClient'
 import ErrorMessage from './ErrorMessage'
-import {set} from '../utils/localStorage'
 
 class UserRegister extends React.Component {
   constructor (props) {
@@ -26,10 +25,6 @@ class UserRegister extends React.Component {
   submitNewUser () {
     if (this.state.username && this.state.password && this.state.name) {
       registerUser({...this.state})
-<<<<<<< HEAD
-        .then(token => {
-          set('token', token)
-=======
         .then(res => {
           if (res.status === 200) {
             alert('New Member added into the database')
@@ -40,7 +35,6 @@ class UserRegister extends React.Component {
         .then(() => this.props.history.push('/adminlogin'))
         .catch(err => {
           alert(err.response.body.message)
->>>>>>> 177aa4d34c5aaf6528bbb3f3723c8c4c256a811c
         })
     }
   }
