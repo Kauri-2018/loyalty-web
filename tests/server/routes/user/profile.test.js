@@ -1,6 +1,6 @@
 const request = require('supertest')
 
-jest.mock('../../../../../server/db/users', () => ({
+jest.mock('../../../../server/db/users', () => ({
   getUserByUserId: id => Promise.resolve({
     id: 116,
     userId: 33,
@@ -12,7 +12,7 @@ jest.mock('../../../../../server/db/users', () => ({
   })
 }))
 
-jest.mock('../../../../../server/auth/token', () => ({
+jest.mock('../../../../server/auth/token', () => ({
   decode: (req, res, next) => {
     req.user = {
       id: 3
@@ -22,9 +22,9 @@ jest.mock('../../../../../server/auth/token', () => ({
   issue: (req, res, next) => next()
 }))
 
-const server = require('../../../../../server/server')
+const server = require('../../../../server/server')
 
-test('get /api/v1/user/profile retrieves user profile', () => {
+test('GET /api/v1/user/profile retrieves user profile', () => {
   const expected = 'Logan Bruno'
   return request(server)
     .get('/api/v1/user/profile')

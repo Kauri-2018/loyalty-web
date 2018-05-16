@@ -1,11 +1,11 @@
 const request = require('supertest')
 
-jest.mock('../../../../../server/db/users', () => ({
+jest.mock('../../../../server/db/users', () => ({
   userExists: username => Promise.resolve(username === 'Pippin'),
   createUser: (username, name, password) => Promise.resolve()
 }))
 
-jest.mock('../../../../../server/auth/token', () => ({
+jest.mock('../../../../server/auth/token', () => ({
   issue: (req, res) => {
     res.status(201).json({
       message: 'Authentication successful.',
@@ -17,9 +17,9 @@ jest.mock('../../../../../server/auth/token', () => ({
   }
 }))
 
-const server = require('../../../../../server/server')
+const server = require('../../../../server/server')
 
-test('post /api/v1/user/register detects existing user', () => {
+test('POST /api/v1/user/register detects existing user', () => {
   return request(server)
     .post('/api/v1/user/register')
     .set('Accept', 'application/json')

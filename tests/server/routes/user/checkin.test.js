@@ -1,6 +1,6 @@
 const request = require('supertest')
 
-jest.mock('../../../../../server/db/visits', () => ({
+jest.mock('../../../../server/db/visits', () => ({
   getVisits: id => Promise.resolve(
     [{
       timestamp: 1521229685183
@@ -9,11 +9,11 @@ jest.mock('../../../../../server/db/visits', () => ({
   countVisits: id => Promise.resolve(2)
 }))
 
-jest.mock('../../../../../server/checkin/isFirstVisitToday', () => ({
+jest.mock('../../../../server/checkin/isFirstVisitToday', () => ({
   isFirstVisitToday: visits => true
 }))
 
-jest.mock('../../../../../server/auth/token', () => ({
+jest.mock('../../../../server/auth/token', () => ({
   decode: (req, res, next) => {
     req.user = {
       id: 3
@@ -23,7 +23,7 @@ jest.mock('../../../../../server/auth/token', () => ({
   issue: (req, res, next) => next()
 }))
 
-const server = require('../../../../../server/server')
+const server = require('../../../../server/server')
 
 test('POST /api/v1/user/checkin checks if user can check in today', () => {
   return request(server)
