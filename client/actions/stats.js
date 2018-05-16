@@ -7,7 +7,7 @@ export const USERS_REQUEST = 'USERS_REQUEST'
 export const USERS_SUCCESS = 'USERS_SUCCESS'
 export const USERS_FAILURE = 'USERS_FAILURE'
 
-function requestStats () {
+export function requestStats () {
   return {
     type: STATS_REQUEST
   }
@@ -20,14 +20,14 @@ export function receiveStats (stats) {
   }
 }
 
-function statsError (message) {
+export function statsError (message) {
   return {
     type: STATS_FAILURE,
     message
   }
 }
 
-function requestUsers () {
+export function requestUsers () {
   return {
     type: USERS_REQUEST
   }
@@ -40,7 +40,7 @@ export function receiveUsers (users) {
   }
 }
 
-function usersError (message) {
+export function usersError (message) {
   return {
     type: USERS_FAILURE,
     message
