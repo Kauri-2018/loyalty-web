@@ -23,7 +23,7 @@ nock('http://localhost')
   .get('/api/v1/admin/stats')
   .reply(200, users)
 
-test('getStatistics sends post req to server', () => {
+test('getStatistics sends get req to server', () => {
   return getStatistics()
     .then(stats => {
       const actual = stats.body.length

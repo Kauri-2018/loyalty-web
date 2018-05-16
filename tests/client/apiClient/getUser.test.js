@@ -22,7 +22,7 @@ nock('http://localhost')
   .get('/api/v1/user/profile')
   .reply(200, user)
 
-test('getUser sends post req to server', () => {
+test('getUser sends get req to server', () => {
   const expected = 129
   return getUser()
     .then(user => {
