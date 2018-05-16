@@ -8,9 +8,13 @@ jest.mock('../../../../../server/db/users', () => ({
 jest.mock('../../../../../server/auth/token', () => ({
   issue: (req, res) => {
     res.status(201).json({
-    message: 'Authentication successful.',
-    token: 'goosetoken'
-  })}
+      message: 'Authentication successful.',
+      token: 'goosetoken'
+    })
+  },
+  decode: (req, res, next) => {
+    next()
+  }
 }))
 
 const server = require('../../../../../server/server')

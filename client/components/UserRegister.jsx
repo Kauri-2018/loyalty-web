@@ -4,6 +4,7 @@ import {connect} from 'react-redux'
 import {receiveLogin} from '../actions/login'
 import {registerUser, getUser} from '../apiClient'
 import ErrorMessage from './ErrorMessage'
+import {set} from '../utils/localStorage'
 
 class UserRegister extends React.Component {
   constructor (props) {
@@ -27,8 +28,7 @@ class UserRegister extends React.Component {
     if (this.state.username && this.state.password && this.state.name) {
       registerUser({...this.state})
         .then(token => {
-          // TODO Move to separate module at later stage
-          localStorage.setItem('token', token)
+          set('token', token)
         })
         .then(getUser)
         .then(user => this.props.loginUser(user))

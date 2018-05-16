@@ -17,8 +17,7 @@ nock('http://localhost')
 test('registerUser sends post req to server', () => {
   const expected = token
   return registerUser(userDetails)
-    .then(res => {
-      const actual = res.body.token
-      expect(actual).toBe(expected)
+    .then(token => {
+      expect(token).toBe(expected)
     })
 })
