@@ -1,7 +1,7 @@
 import nock from 'nock'
 
 jest.mock('../../../client/utils/localStorage', () => ({
-  get: () => 'firstFakeTokenTest'
+  get: () => 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MiwidXNlcm5hbWUiOiJkb24iLCJpYXQiOjE1MjU2NjQ4NTgsImV4cCI6MTUyNTc1MTI1OH0.ofOMvjwHAEkbAnMK7NC2xG3RneUlGGeTE52OC-Di06w'
 }))
 
 const getStatistics = require('../../../client/apiClient').getStatistics
